@@ -1,6 +1,38 @@
+:root {
+  --control-panel-bg-color: #1f1b1b;
+  --text-default-color: #cbc3c3;
+  --workfield-color: #2a2b29;
+  --control-panel-max-height: 72px;
+}
+
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 1920px;
   font-weight: normal;
+}
+
+#control-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: var(--control-panel-bg-color);
+  max-height: var(--control-panel-max-height);
+}
+
+.control-panel-element {
+  fill: var(--text-default-color);
+}
+
+#work-field {
+  background-color: var(--workfield-color);
+  width: 100%;
+  min-height: 1080px;
+  position: absolute;
+  top: var(--control-panel-max-height);
+  left: 0px;
 }
