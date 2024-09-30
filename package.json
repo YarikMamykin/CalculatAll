@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "node-html-parser": "^6.1.13",
     "pinia": "^2.2.2",
     "vue": "^3.4.29"
   },

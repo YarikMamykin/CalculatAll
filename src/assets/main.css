@@ -2,7 +2,11 @@
   --control-panel-bg-color: #1f1b1b;
   --text-default-color: #cbc3c3;
   --workfield-color: #2a2b29;
+  --active-item-color: #e0cc15;
+  --active-panel-bg-color: #1f1b1b;
   --control-panel-max-height: 72px;
+  color: var(--text-default-color);
+  background-color: var(--control-panel-bg-color);
 }
 
 #app {
@@ -26,6 +30,16 @@
 
 .control-panel-element {
   fill: var(--text-default-color);
+  transition-duration: 300ms;
+  padding: 0.25rem;
+  border-radius: 10%;
+  border: 1px solid var(--control-panel-bg-color);
+}
+.control-panel-element:hover {
+  border: 1px solid var(--active-item-color);
+}
+.control-panel-element-selected {
+  fill: var(--active-item-color);
 }
 
 #work-field {
@@ -35,4 +49,73 @@
   position: absolute;
   top: var(--control-panel-max-height);
   left: 0px;
+}
+
+.cancel-button {
+  fill: var(--active-item-color);
+  background-color: var(--active-panel-bg-color);
+  padding: 10px;
+  border-radius: 50%;
+  transition-duration: 500ms;
+}
+
+.cancel-button:hover {
+  fill: var(--active-panel-bg-color);
+  background-color: var(--active-item-color);
+}
+
+.cancel-button:active {
+  scale: 70%;
+}
+
+.modal-window-plate {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: none;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-window {
+  background-color: var(--active-panel-bg-color);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: calc(50px + var(--control-panel-max-height));
+  padding: 1em;
+  border: 2px solid var(--active-item-color);
+  border-radius: 50px;
+  max-width: 70vmin;
+  max-height: 70vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-window-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.modal-window-header > h2 {
+  margin-right: 0px;
+  margin-left: auto;
+  padding-left: 2em;
+}
+
+#about-text {
+  text-align: initial;
+  text-wrap: wrap;
+  font-size: 1rem;
+  padding: 1em;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }

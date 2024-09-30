@@ -1,4 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useControlPanelStore, CurrentView } from '@/store/control_panel'
+import { ref } from 'vue'
+
+const store = useControlPanelStore()
+const emailIcon = ref()
+const addIcon = ref()
+const aboutIcon = ref()
+store.$patch({
+  viewsMap: new Map<number, any>([
+    [CurrentView.Email, emailIcon],
+    [CurrentView.Add, addIcon],
+    [CurrentView.About, aboutIcon]
+  ])
+})
+</script>
 
 <template>
   <div id="control-panel">
@@ -8,6 +23,8 @@
       height="32"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
+      @click="store.setView(CurrentView.Email)"
+      ref="emailIcon"
     >
       <g clip-path="url(#clip0_3054_34)">
         <path
@@ -27,6 +44,8 @@
       height="32"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
+      @click="store.setView(CurrentView.Add)"
+      ref="addIcon"
     >
       <g clip-path="url(#clip0_3054_27)">
         <path
@@ -46,6 +65,8 @@
       height="32"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
+      @click="store.setView(CurrentView.About)"
+      ref="aboutIcon"
     >
       <g clip-path="url(#clip0_3054_30)">
         <path

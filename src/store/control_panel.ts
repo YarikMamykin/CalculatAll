@@ -9,12 +9,28 @@ export enum CurrentView {
 
 interface State {
   currentView: CurrentView
+  viewsMap: Map<CurrentView, any>
 }
 
 export const useControlPanelStore = defineStore('controlPanel', {
   state: (): State => {
     return {
-      currentView: CurrentView.Main
+      currentView: CurrentView.Main,
+      viewsMap: new Map<number, any>()
+    }
+  },
+  actions: {
+    setView(view: CurrentView): void {
+      this.currentView = view
+      this.viewsMap.forEach((reference: any, id: CurrentView) => {
+        id === view
+          ? reference.value.classList.add('control-panel-element-selected')
+          : reference.value.classList.remove('control-panel-element-selected')
+      })
+    },
+
+    resetView(): void {
+      this.setView(CurrentView.Main)
     }
   }
 })
