@@ -89,7 +89,6 @@
   border: 2px solid var(--active-item-color);
   border-radius: 50px;
   max-width: 70vmin;
-  max-height: 70vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
