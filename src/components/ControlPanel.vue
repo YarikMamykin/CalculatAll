@@ -17,6 +17,7 @@ store.$patch({
 
 <template>
   <div id="control-panel">
+    <img src="/calculatall.png" width="64px" height="64px" />
     <svg
       class="control-panel-element"
       width="32"

@@ -20,20 +20,24 @@
   top: 0;
   left: 0;
   display: flex;
-  gap: 40px;
+  gap: 3em;
   justify-content: center;
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
   background-color: var(--control-panel-bg-color);
   max-height: var(--control-panel-max-height);
+}
+#control-panel > img {
+  position: absolute;
+  left: 10px;
+  border-radius: 10px;
+  top: 4px;
 }
 
 .control-panel-element {
   fill: var(--text-default-color);
   transition-duration: 300ms;
-  padding: 0.25rem;
   border-radius: 10%;
+  padding: 1em;
   border: 1px solid var(--control-panel-bg-color);
 }
 .control-panel-element:hover {
