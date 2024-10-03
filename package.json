@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "VITE_HOST=http://localhost:5173 vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "deep-email-validator": "^0.1.21",
     "node-html-parser": "^6.1.13",
     "pinia": "^2.2.2",
     "vue": "^3.4.29"

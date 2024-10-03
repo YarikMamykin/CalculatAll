@@ -5,6 +5,7 @@
   --active-item-color: #e0cc15;
   --active-panel-bg-color: #1f1b1b;
   --control-panel-max-height: 72px;
+  --error-msg-color: coral;
   color: var(--text-default-color);
   background-color: var(--control-panel-bg-color);
 }
@@ -117,4 +118,77 @@
   max-height: 90%;
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+.email-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-height: 95%;
+  gap: 2rem 0;
+}
+.email-header {
+  display: grid;
+  grid-template-columns: minmax(0, 4rem) minmax(2rem, auto);
+  grid-template-rows: auto;
+  max-width: 70%;
+}
+
+.email-container > button {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  text-align: center;
+  background-color: inherit;
+  color: var(--active-item-color);
+  border: 1px solid var(--active-item-color);
+  border-radius: 50px;
+  transition-duration: 300ms;
+  align-self: end;
+}
+.email-container > button:hover {
+  color: var(--active-panel-bg-color);
+  background-color: var(--active-item-color);
+}
+.email-container > button:active {
+  scale: 70%;
+}
+
+.email-container > label {
+  color: var(--error-msg-color);
+}
+
+.email-container > textarea {
+  font-family: inherit;
+  background-color: initial;
+  color: var(--text-default-color);
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid var(--active-item-color);
+  resize: none;
+  height: 25vmin;
+  padding: 1em;
+}
+
+.email-container > textarea:focus {
+  outline: none;
+}
+
+.line-edit {
+  font-family: inherit;
+  background-color: initial;
+  color: var(--text-default-color);
+  font-size: 1em;
+  padding: 0.5em;
+  outline: none;
+  max-width: 320em;
+  width: 15em;
+  border: none;
+  border-bottom: 1px solid var(--active-panel-bg-color);
+  transition-duration: 300ms;
+}
+.line-edit:focus {
+  border-bottom: 1px solid var(--active-item-color);
 }
