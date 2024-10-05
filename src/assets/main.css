@@ -203,3 +203,21 @@ pre {
 .line-edit:focus {
   border-bottom: 1px solid var(--active-item-color);
 }
+
+.widgets-container {
+  display: flex;
+  width: 90%;
+  gap: 2em;
+  overflow-x: auto;
+  padding: 1em;
+  scroll-behavior: smooth;
+}
+
+.widget {
+  min-width: 25rem;
+  min-height: 12rem;
+  background-color: var(--active-panel-bg-color);
+  border-radius: 1em;
+  padding: 1em;
+  border: 1px solid var(--active-item-color);
+}
