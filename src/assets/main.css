@@ -1,3 +1,5 @@
+@import 'fonts.css';
+
 :root {
   --control-panel-bg-color: #1f1b1b;
   --text-default-color: #cbc3c3;
@@ -10,9 +12,14 @@
   background-color: var(--control-panel-bg-color);
 }
 
+pre {
+  font-family: Roboto Mono;
+}
+
 #app {
   max-width: 1920px;
   font-weight: normal;
+  font-family: Roboto Mono;
 }
 
 #control-panel {

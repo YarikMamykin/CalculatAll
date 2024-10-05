@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Roboto Mono;
+  src: url('@/assets/fonts/RobotoMono-Regular.woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Roboto Mono;
+  src: url('@/assets/fonts/RobotoMono-Bold.woff2');
+  font-weight: 700;
+}
