@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ModalWindow from '@/components/ModalWindow.vue'
 import { useControlPanelStore } from '@/store/control_panel'
-import { inject, defineModel, ref } from 'vue'
+import { inject, defineModel, defineEmits, ref } from 'vue'
 import emailValidate from 'deep-email-validator'
 
 const controlPanelStore = useControlPanelStore()
@@ -9,6 +9,7 @@ const originHost = inject('originHost')
 const userEmail = defineModel<string>('userEmail', { default: '' })
 const emailBody = defineModel<string>('emailBody', { default: '' })
 let errorMessage = ref('')
+const emit = defineEmits(['submit', 'cancel'])
 
 function sendEmail() {
   emailValidate({
@@ -36,7 +37,7 @@ function sendEmail() {
       })
         .then((response: Response) => {
           if (response.ok) {
-            controlPanelStore.resetView()
+            emit('submit')
             return
           }
           errorMessage.value = 'Failed to send email. Please, try later.'
@@ -52,7 +53,7 @@ function sendEmail() {
 </script>
 
 <template>
-  <ModalWindow name="EMAIL" @cancel="controlPanelStore.resetView()">
+  <ModalWindow name="EMAIL" @cancel="emit('cancel')">
     <form class="email-container" @submit.prevent.stop="sendEmail">
       <div class="email-header">
         <p>To:</p>
