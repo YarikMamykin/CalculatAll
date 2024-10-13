@@ -229,3 +229,19 @@ pre {
   padding: 1em;
   border: 1px solid var(--active-item-color);
 }
+
+.donation-icon {
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition-duration: 300ms;
+}
+
+.donation-icon:hover {
+  border: 1px solid var(--active-item-color);
+}
+
+.donation-icon:active {
+  scale: 70%;
+}

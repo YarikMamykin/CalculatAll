@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { controlPanel, controlPanelIcons, workField, brandIcon } from './utils'
+import { controlPanel, controlPanelIcons, workField, brandIcon, donationIcon } from './utils'
 
 test('visits the app root url', async ({ page }) => {
   await page.goto('/')
@@ -10,4 +10,5 @@ test('visits the app root url', async ({ page }) => {
   await expect(workField(page)).toBeVisible()
   await expect(workField(page)).toBeEmpty()
   await expect(brandIcon(page)).toBeVisible()
+  await expect(donationIcon(page)).toBeVisible()
 })

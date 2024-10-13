@@ -17,6 +17,10 @@ export function brandIcon(page: Page): Locator {
   return controlPanel(page).locator('.brand-icon')
 }
 
+export function donationIcon(page: Page): Locator {
+  return controlPanel(page).locator('.donation-icon')
+}
+
 export function modalWindowPlate(page: Page): Locator {
   return workField(page).locator('div.modal-window-plate')
 }
