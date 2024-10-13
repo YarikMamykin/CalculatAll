@@ -7,37 +7,50 @@
   --active-item-color: #e0cc15;
   --active-panel-bg-color: #1f1b1b;
   --control-panel-max-height: 72px;
+  --brand-icon-size: calc(var(--control-panel-max-height) - 4px);
   --error-msg-color: coral;
   color: var(--text-default-color);
   background-color: var(--control-panel-bg-color);
 }
 
+body {
+  margin: 0;
+}
+
 pre {
-  font-family: Roboto Mono;
+  font-family: inherit;
 }
 
 #app {
-  max-width: 1920px;
+  display: block;
   font-weight: normal;
   font-family: Roboto Mono;
 }
 
 #control-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   gap: 3em;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--control-panel-bg-color);
-  max-height: var(--control-panel-max-height);
+  height: var(--control-panel-max-height);
+  padding: 0 1em 0 1em;
 }
-#control-panel > img {
-  position: absolute;
-  left: 10px;
+.brand-icon {
   border-radius: 10px;
-  top: 4px;
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
+}
+.control-panel-icons {
+  display: inherit;
+  gap: inherit;
+}
+/* subsequent div for control panel icons
+ * later to be replaced with `donate` button.
+ */
+.control-panel-icons + div {
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
 }
 
 .control-panel-element {
@@ -56,11 +69,7 @@ pre {
 
 #work-field {
   background-color: var(--workfield-color);
-  width: 100%;
-  min-height: 1080px;
-  position: absolute;
-  top: var(--control-panel-max-height);
-  left: 0px;
+  min-height: calc(100vh - var(--control-panel-max-height));
 }
 
 .cancel-button {
@@ -93,14 +102,12 @@ pre {
 
 .modal-window {
   background-color: var(--active-panel-bg-color);
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  margin-top: calc(50px + var(--control-panel-max-height));
+  margin: calc(50px + var(--control-panel-max-height)) auto;
+  max-height: calc(90vh - 50px - var(--control-panel-max-height));
+  max-width: 70vw;
   padding: 1em;
   border: 2px solid var(--active-item-color);
   border-radius: 50px;
-  max-width: 70vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,6 +143,7 @@ pre {
   flex-direction: column;
   width: 90%;
   max-height: 95%;
+  overflow-y: auto;
   gap: 2rem 0;
 }
 .email-header {

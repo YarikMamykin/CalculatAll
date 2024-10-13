@@ -5,7 +5,9 @@ test('visits the app root url, presses about icon which opens Widgets view, clic
   page
 }) => {
   expect(await page.goto('/')).toBeTruthy()
-  const controlPanelIcons = page.locator('div#app').locator('div#control-panel > svg')
+  const controlPanelIcons = page
+    .locator('div#app')
+    .locator('div#control-panel > div.control-panel-icons > svg')
   await expect(controlPanelIcons).toHaveCount(3)
   const workField = page.locator('div#app').locator('div#work-field')
   await expect(workField).toBeVisible()
