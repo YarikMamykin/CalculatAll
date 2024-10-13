@@ -1,43 +1,42 @@
 import { test, expect } from '@playwright/test'
-import { parse } from 'node-html-parser'
+import {
+  controlPanelIcons,
+  workField,
+  modalWindowPlate,
+  modalWindow,
+  modalWindowHeader,
+  modalWindowHeaderChildCount,
+  modalWindowHeaderText,
+  modalWindowHeaderCancelButton
+} from './utils'
 
 test('visits the app root url, presses about icon which opens Widgets view, clicks Cancel button', async ({
   page
 }) => {
   expect(await page.goto('/')).toBeTruthy()
-  const controlPanelIcons = page
-    .locator('div#app')
-    .locator('div#control-panel > div.control-panel-icons > svg')
-  await expect(controlPanelIcons).toHaveCount(3)
-  const workField = page.locator('div#app').locator('div#work-field')
-  await expect(workField).toBeVisible()
-  await expect(workField).toBeEmpty()
 
-  await controlPanelIcons.nth(1).click({ timeout: 1000 })
-  await expect(workField).toBeVisible()
-  await expect(workField.locator('div.modal-window-plate')).toBeVisible()
+  await expect(controlPanelIcons(page)).toHaveCount(3)
+  await expect(workField(page)).toBeVisible()
+  await expect(workField(page)).toBeEmpty()
 
-  const modalWindow = workField.locator('div.modal-window-plate').locator('div.modal-window')
-  await expect(modalWindow).toBeVisible()
+  await controlPanelIcons(page).nth(1).click({ timeout: 1000 })
+  await expect(workField(page)).toBeVisible()
+  await expect(modalWindowPlate(page)).toBeVisible()
 
-  const modalWindowHTML = parse(await modalWindow.innerHTML({ timeout: 1000 }))
-  expect(modalWindowHTML.childNodes.length).toBe(2)
+  await expect(modalWindow(page)).toBeVisible()
 
-  const modalWindowHeader = workField
-    .locator('div.modal-window-plate')
-    .locator('div.modal-window')
-    .locator('div.modal-window-header')
-  expect(await modalWindowHeader.count()).toBe(1)
-  expect(await modalWindowHeader.isVisible()).toBeTruthy()
-  expect(parse(await modalWindowHeader.innerHTML({ timeout: 1000 })).childNodes.length).toBe(2)
-  expect(await modalWindowHeader.locator('>h2').innerText({ timeout: 1000 })).toBe('WIDGETS')
+  expect(await modalWindowHeaderChildCount(page, 1000)).toBe(2)
 
-  const cancelButton = modalWindowHeader.locator('>svg.cancel-button')
-  expect(await cancelButton.innerHTML({ timeout: 1000 })).not.toBe('')
-  expect(await cancelButton.isEnabled({ timeout: 1000 })).toBeTruthy()
+  expect(await modalWindowHeader(page).count()).toBe(1)
+  expect(await modalWindowHeader(page).isVisible()).toBeTruthy()
+  expect(await modalWindowHeaderChildCount(page, 1000)).toBe(2)
+  expect(await modalWindowHeaderText(page, 1000)).toBe('WIDGETS')
 
-  await cancelButton.click({ timeout: 1000 })
+  expect(await modalWindowHeaderCancelButton(page).innerHTML({ timeout: 1000 })).not.toBe('')
+  expect(await modalWindowHeaderCancelButton(page).isEnabled({ timeout: 1000 })).toBeTruthy()
 
-  await expect(workField).toBeVisible()
-  await expect(workField).toBeEmpty()
+  await modalWindowHeaderCancelButton(page).click({ timeout: 1000 })
+
+  await expect(workField(page)).toBeVisible()
+  await expect(workField(page)).toBeEmpty()
 })
