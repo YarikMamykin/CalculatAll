@@ -1,6 +1,8 @@
 import { Locator, Page } from '@playwright/test'
 import { parse } from 'node-html-parser'
 
+export const widgetTypes = Object.freeze(new Set(['WidgetType1', 'WidgetType2']))
+
 export function controlPanel(page: Page): Locator {
   return page.locator('div#app').locator('div#control-panel')
 }
@@ -47,4 +49,24 @@ export function modalWindowHeaderCancelButton(page: Page): Locator {
 
 export function modalWindowEmailContainer(page: Page): Locator {
   return modalWindow(page).locator('form.email-container')
+}
+
+export function widgetPreview(page: Page): Locator {
+  return modalWindow(page).locator('div.widget-preview')
+}
+
+export function widgetPreviewItems(page: Page): Locator {
+  return widgetPreview(page).locator('div')
+}
+
+export function widgetPreviewItem(page: Page, itemIndex: number): Locator {
+  return widgetPreview(page).locator('div').nth(itemIndex)
+}
+
+export async function widgetPreviewItemContent(
+  page: Page,
+  itemIndex: number,
+  timeout: number
+): Promise<String> {
+  return await widgetPreviewItem(page, itemIndex).innerHTML({ timeout })
 }

@@ -1,13 +1,27 @@
 <script setup lang="ts">
 import ModalWindow from '@/components/ModalWindow.vue'
-import Widget from '@/components/Widget.vue'
+import WidgetPreview from '@/components/WidgetPreview.vue'
+import { widgets, widgetTypes } from '@/components/widgets'
+import { ref } from 'vue'
+import { useWorkFieldStore } from '@/store/work_field'
+
+const widgetsPreview = ref()
+const workfieldStore = useWorkFieldStore()
+function onWidgetSelected(widgetType: string) {
+  workfieldStore.widgets.push(widgetType)
+  widgetsPreview.value?.cancel()
+}
 </script>
 
 <template>
-  <ModalWindow name="WIDGETS">
+  <ModalWindow ref="widgetsPreview" name="WIDGETS">
     <div class="widgets-container">
-      <Widget />
-      <Widget />
+      <WidgetPreview
+        v-for="widgetType of widgetTypes"
+        :key="widgetType"
+        :widgetType="widgetType"
+        @selected="onWidgetSelected"
+      />
     </div>
   </ModalWindow>
 </template>

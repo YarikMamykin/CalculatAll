@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import CancelButton from '@/components/CancelButton.vue'
-import { defineEmits, defineProps } from 'vue'
+import { defineEmits, defineProps, defineExpose } from 'vue'
 
 const emits = defineEmits(['cancel'])
 const props = defineProps({
   name: String
+})
+
+function cancel() {
+  emits('cancel')
+}
+
+defineExpose({
+  cancel
 })
 </script>
 
