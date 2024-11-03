@@ -7,6 +7,7 @@
   --active-item-color: #e0cc15;
   --active-panel-bg-color: #1f1b1b;
   --control-panel-max-height: 72px;
+  --widget-control-panel-max-height: 40px;
   --brand-icon-size: calc(var(--control-panel-max-height) - 4px);
   --error-msg-color: coral;
   color: var(--text-default-color);
@@ -232,6 +233,33 @@ pre {
 }
 .line-edit:focus {
   border-bottom: 1px solid var(--active-item-color);
+}
+
+#widget-control-panel {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--text-default-color);
+  border-bottom: 1px solid var(--text-default-color);
+  background-color: var(--control-panel-bg-color);
+  height: var(--widget-control-panel-max-height);
+  padding: 0 1em 0 1em;
+  position: sticky;
+  top: 0;
+}
+
+.widget-control-panel-element {
+  fill: var(--text-default-color);
+  transition-duration: 300ms;
+  width: 32px;
+  height: 32px;
+}
+.widget-control-panel-element:hover {
+  fill: var(--active-item-color);
+}
+.widget-control-panel-element:active {
+  scale: 70%;
 }
 
 .widgets-container {
