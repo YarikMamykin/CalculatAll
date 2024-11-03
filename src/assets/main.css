@@ -292,7 +292,10 @@ pre {
   border: 1px solid var(--text-default-color);
 }
 
-.widget:hover,
+.widget:hover {
+  border: 1px solid var(--text-default-color);
+}
+.widget:focus,
 .widget-preview:hover {
   border: 1px solid var(--active-item-color);
 }
