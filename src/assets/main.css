@@ -246,7 +246,7 @@ pre {
   height: var(--widget-control-panel-max-height);
   padding: 0 1em 0 1em;
   position: sticky;
-  top: 0;
+  top: var(--control-panel-max-height);
 }
 
 .widget-control-panel-element {
