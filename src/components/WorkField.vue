@@ -11,7 +11,7 @@ const workfieldStore = useWorkFieldStore()
 </script>
 
 <template>
-  <div id="work-field">
+  <div id="work-field" @click="workfieldStore.$patch({ focused: undefined })">
     <About
       v-if="CurrentView.About === controlPanelStore.currentView"
       @cancel="controlPanelStore.resetView()"
