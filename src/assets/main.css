@@ -51,6 +51,8 @@ pre {
   background-color: var(--control-panel-bg-color);
   height: var(--control-panel-max-height);
   padding: 0 1em 0 1em;
+  position: sticky;
+  top: 0;
 }
 .brand-icon {
   border-radius: 10px;
