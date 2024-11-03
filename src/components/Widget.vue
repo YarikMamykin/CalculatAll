@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { widgets } from '@/components/widgets'
 import { useWorkFieldStore } from '@/store/work_field'
 
@@ -9,14 +9,13 @@ const props = defineProps({
 })
 
 const workFieldStore = useWorkFieldStore()
+const styleClass = computed(() => {
+  return 'widget ' + (workFieldStore.focused === props.id ? 'widget-selected' : '')
+})
 </script>
 
 <template>
-  <div
-    :class="'widget ' + (workFieldStore.focused === props.id ? 'widget-selected' : '')"
-    @click="workFieldStore.$patch({ focused: props.id })"
-    tabindex="1"
-  >
+  <div :class="styleClass" @click.stop="workFieldStore.$patch({ focused: props.id })" tabindex="1">
     <component :is="widgets[widgetType]" />
   </div>
 </template>
