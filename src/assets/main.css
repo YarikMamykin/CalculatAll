@@ -278,7 +278,7 @@ pre {
   background-color: var(--active-panel-bg-color);
   border-radius: 1em;
   padding: 1em;
-  border: 1px solid var(--active-item-color);
+  border: 1px solid var(--control-panel-bg-color);
   display: grid;
 }
 
@@ -286,6 +286,15 @@ pre {
   min-width: unset;
   min-height: unset;
   height: var(--max-widget-size);
+}
+
+.widget-preview {
+  border: 1px solid var(--text-default-color);
+}
+
+.widget:hover,
+.widget-preview:hover {
+  border: 1px solid var(--active-item-color);
 }
 
 .widget-type1,
