@@ -296,6 +296,7 @@ pre {
   border: 1px solid var(--text-default-color);
 }
 .widget:focus,
+.widget-selected,
 .widget-preview:hover {
   border: 1px solid var(--active-item-color);
 }

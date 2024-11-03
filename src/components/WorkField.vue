@@ -25,6 +25,11 @@ const workfieldStore = useWorkFieldStore()
       v-if="CurrentView.Add === controlPanelStore.currentView"
       @cancel="controlPanelStore.resetView()"
     />
-    <Widget v-for="widget of workfieldStore.widgets" :key="widget" :widgetType="widget" />
+    <Widget
+      v-for="(widget, index) of workfieldStore.widgets"
+      :key="widget"
+      :id="index"
+      :widgetType="widget"
+    />
   </div>
 </template>

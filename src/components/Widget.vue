@@ -1,23 +1,22 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { defineProps } from 'vue'
 import { widgets } from '@/components/widgets'
 import { useWorkFieldStore } from '@/store/work_field'
 
 const props = defineProps({
+  id: { type: Number, required: true },
   widgetType: { type: String, required: true }
 })
 
-const widgetRef = ref<HTMLElement>()
 const workFieldStore = useWorkFieldStore()
-function focus(_: unknown) {
-  widgetRef.value.focus({ preventScroll: true })
-  workFieldStore.$patch({ focused: widgetRef.value })
-  console.log(widgetRef.value)
-}
 </script>
 
 <template>
-  <div ref="widgetRef" class="widget" @click="(e) => focus(e)" tabindex="1">
+  <div
+    :class="'widget ' + (workFieldStore.focused === props.id ? 'widget-selected' : '')"
+    @click="workFieldStore.$patch({ focused: props.id })"
+    tabindex="1"
+  >
     <component :is="widgets[widgetType]" />
   </div>
 </template>

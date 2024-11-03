@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 interface State {
   widgets: string[]
-  focused?: HTMLElement
+  focused?: Number
 }
 
 export const useWorkFieldStore = defineStore('workFieldStore', {
