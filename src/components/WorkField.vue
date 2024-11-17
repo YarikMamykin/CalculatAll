@@ -29,6 +29,7 @@ const workfieldStore = useWorkFieldStore()
       v-for="(widget, index) of workfieldStore.widgets"
       :key="widget"
       :id="index"
+      :ref="`widget${index}`"
       :widgetType="widget"
     />
   </div>

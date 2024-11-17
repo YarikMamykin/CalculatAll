@@ -14,7 +14,6 @@ const styleClass = computed(() => {
 })
 const widgetRef = ref<HTMLElement>()
 function setStyle(style: string) {
-  console.log(widgetRef.value)
   widgetRef.value.style = style
 }
 defineExpose({
