@@ -1,9 +1,48 @@
 <script setup lang="ts">
+import { useWorkFieldStore, WidgetInfo } from '@/store/work_field'
+
+const workFieldStore = useWorkFieldStore()
+
 function narrowWidget() {
-  console.log()
+  if (undefined === workFieldStore.focused) {
+    return
+  }
+  const widget: WidgetInfo = workFieldStore.widgets.at(
+    workFieldStore.focused as number
+  ) as WidgetInfo
+  console.log('NARROWING: ', widget.element)
+  const maxColumns: number = Number(
+    getComputedStyle(widget.element).getPropertyValue('--max-widgets-per-row')
+  )
+  widget.horizontalCellsOccupied =
+    widget.horizontalCellsOccupied > 1 ? widget.horizontalCellsOccupied - 1 : 1
+  const currentRow = Math.floor(workFieldStore.focused / maxColumns)
+  const currentCol = workFieldStore.focused % maxColumns
+  if (1 === widget.horizontalCellsOccupied) {
+    widget.element.style.gridArea = ''
+  } else {
+    widget.element.style.gridArea = `${currentRow + 1}/${currentCol + 1}/${widget.verticalCellsOccupied + 1}/${widget.horizontalCellsOccupied + 1 + currentCol}`
+  }
 }
 function widenWidget() {
-  console.log()
+  if (undefined === workFieldStore.focused) {
+    return
+  }
+  const widget = workFieldStore.widgets.at(workFieldStore.focused as number) as WidgetInfo
+  console.log('WIDENING: ', widget.element)
+  const maxColumns: number = Number(
+    getComputedStyle(widget.element).getPropertyValue('--max-widgets-per-row')
+  )
+  console.log(maxColumns)
+  const currentRow = Math.floor(workFieldStore.focused / maxColumns)
+  const currentCol = workFieldStore.focused % maxColumns
+  const maxColumnsForWidget = maxColumns - currentCol
+  widget.horizontalCellsOccupied += 1
+  widget.horizontalCellsOccupied =
+    widget.horizontalCellsOccupied > maxColumnsForWidget
+      ? maxColumns + 1
+      : widget.horizontalCellsOccupied
+  widget.element.style.gridArea = `${currentRow + 1}/${currentCol + 1}/${widget.verticalCellsOccupied + 1}/${widget.horizontalCellsOccupied + 1}`
 }
 </script>
 

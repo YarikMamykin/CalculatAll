@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineExpose, computed, ref } from 'vue'
+import { defineProps, defineExpose, computed, ref, onMounted } from 'vue'
 import { widgets } from '@/components/widgets'
 import { useWorkFieldStore } from '@/store/work_field'
 
@@ -18,6 +18,11 @@ function setStyle(style: string) {
 }
 defineExpose({
   setStyle
+})
+onMounted(() => {
+  if (widgetRef.value) {
+    workFieldStore.widgets.at(props.id).element = widgetRef.value
+  }
 })
 </script>
 

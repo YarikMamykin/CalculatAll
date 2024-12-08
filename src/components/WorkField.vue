@@ -30,7 +30,7 @@ const workfieldStore = useWorkFieldStore()
       :key="widget"
       :id="index"
       :ref="`widget${index}`"
-      :widgetType="widget"
+      :widgetType="widget.type"
     />
   </div>
 </template>
