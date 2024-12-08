@@ -1,9 +1,27 @@
 <script setup lang="ts">
+import { useWorkFieldStore, WidgetInfo } from '@/store/work_field'
+
+const workFieldStore = useWorkFieldStore()
+
 function narrowWidget() {
-  console.log()
+  if (undefined === workFieldStore.focused) {
+    return
+  }
+  const widget: WidgetInfo = workFieldStore.widgets.at(
+    workFieldStore.focused as number
+  ) as WidgetInfo
+  console.log('NARROWING: ', widget.element)
+  widget.horizontalCellsOccupied =
+    widget.horizontalCellsOccupied > 1 ? widget.horizontalCellsOccupied - 1 : 1
 }
 function widenWidget() {
-  console.log()
+  if (undefined === workFieldStore.focused) {
+    return
+  }
+  const widget = workFieldStore.widgets.at(workFieldStore.focused as number) as WidgetInfo
+  console.log('WIDENING: ', widget.element)
+  widget.horizontalCellsOccupied =
+    widget.horizontalCellsOccupied < 4 ? widget.horizontalCellsOccupied + 1 : 4
 }
 </script>
 
