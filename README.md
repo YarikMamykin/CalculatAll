@@ -1,0 +1,2 @@
+# CalculatAll
+Generic Web calculator
