@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #0d1221, #1c2a4f);
+  color: white;
+  font-weight: normal;
+  font-family: Roboto Mono;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+.all-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.default-size {
+  width: 2em;
+  height: 2em;
+}
+
+.default-inner-size {
+  width: 1em;
+  height: 1em;
+}
+
+@media (min-width: 600px) {
+  .default-size {
+    width: 3em;
+    height: 3em;
+  }
+
+  .default-inner-size {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+@media (min-width: 768px) {
+  .default-size {
+    width: 4em;
+    height: 4em;
+  }
+
+  .default-inner-size {
+    width: 2em;
+    height: 2em;
+  }
+}

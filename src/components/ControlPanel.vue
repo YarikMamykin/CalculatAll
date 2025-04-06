@@ -1,5 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DefaultCircleButton from "./buttons/DefaultCircleButton.vue";
+</script>
 
 <template>
-  <div id="control-panel"></div>
+  <div class="centered-row control-panel">
+    <div class="centered-row">
+      <img class="default-size app-icon" src="/calculatall.png" />
+      <label class="app-name">CalculatAll</label>
+    </div>
+    <default-circle-button>
+      <img class="default-inner-size" src="@/assets/add-sign.svg" />
+    </default-circle-button>
+  </div>
 </template>
