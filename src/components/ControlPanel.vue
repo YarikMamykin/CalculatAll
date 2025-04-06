@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DefaultCircleButton from "@/components/buttons/DefaultCircleButton.vue";
+import DefaultCircleButton from "./buttons/DefaultCircleButton.vue";
 </script>
 
 <template>
