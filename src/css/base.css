@@ -1,3 +1,7 @@
+:root {
+  --dark-gray: #303030;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -15,6 +19,7 @@ body {
 
 .all-centered {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
