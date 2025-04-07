@@ -23,7 +23,7 @@
   height: 50%;
   background-color: var(--dark-gray);
   border: 0;
-  border-radius: 5%;
+  border-radius: 1em;
 }
 
 .headline {
