@@ -27,7 +27,20 @@
 }
 
 .headline {
-  padding: 0.5em;
-  justify-content: space-between;
-  width: 90%;
+  padding: 0.5em 1em 0.5em 1em;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1em;
+  column-gap: 1em;
+}
+
+.headline-title {
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .headline {
+    padding: 0.5em 1.5em 0.5em 1.5em;
+  }
 }
