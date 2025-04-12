@@ -1,5 +1,8 @@
 :root {
   --dark-gray: #303030;
+  --max-columns-in-widgets-menu: 1;
+  --max-widget-size: 240px;
+  --border-color: white;
 }
 
 body {
@@ -61,5 +64,17 @@ body {
   .default-inner-size {
     width: 2em;
     height: 2em;
+  }
+
+  :root {
+    --max-columns-in-widgets-menu: 2;
+    --max-widget-size: 300px;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --max-columns-in-widgets-menu: 3;
+    --max-widget-size: 400px;
   }
 }
