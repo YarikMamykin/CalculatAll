@@ -17,9 +17,19 @@
     inset 0 -0.1em 0.5em #222222;
 }
 
-.close-button {
+.widget-headline-button {
   background-color: transparent;
   width: 0;
   height: 0;
   border: none;
+}
+
+.headline-buttons {
+  gap: 1em;
+}
+
+@media (min-width: 600px) {
+  .headline-buttons {
+    gap: 1.5em;
+  }
 }
