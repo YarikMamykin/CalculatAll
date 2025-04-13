@@ -5,10 +5,15 @@
   --border-color: white;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   background: linear-gradient(to bottom, #0d1221, #1c2a4f);
   color: white;
   font-weight: normal;
