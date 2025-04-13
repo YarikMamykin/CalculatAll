@@ -56,6 +56,9 @@
   border: 1px solid var(--border-color);
   padding: 0 0.5em 0.5em 0.5em;
 }
+.widget:hover {
+  border: 1px solid var(--active-widget-border);
+}
 
 .widgets-preview-container {
   display: grid;
@@ -70,5 +73,14 @@
 @media (min-width: 600px) {
   .headline {
     padding: 0.5em 1.5em 0.5em 1.5em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .widget {
+    border-width: 2px;
+  }
+  .widget:hover {
+    border-width: 2px;
   }
 }

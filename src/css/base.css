@@ -3,6 +3,7 @@
   --max-columns-in-widgets-menu: 1;
   --max-widget-size: 240px;
   --border-color: white;
+  --active-widget-border: gold;
 }
 
 *,
