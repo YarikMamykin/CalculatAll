@@ -11,6 +11,7 @@
     calc(0.5 * var(--control-panel-max-padding));
   background-color: var(--dark-gray);
   height: var(--control-panel-height);
+  box-sizing: content-box;
 }
 
 .app-icon {
