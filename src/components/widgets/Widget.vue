@@ -11,7 +11,7 @@ const props = defineProps({
 
 <template>
   <div class="widget">
-    <headline :title="props.name" />
+    <headline :title="props.name ?? 'Unnamed'" />
     <component :is="props.widgetType" />
   </div>
 </template>
