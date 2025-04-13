@@ -44,8 +44,8 @@ body {
 }
 
 .default-inner-size {
-  width: 1em;
-  height: 1em;
+  width: 1.25em;
+  height: 1.25em;
 }
 
 @media (min-width: 600px) {
@@ -73,7 +73,7 @@ body {
 
   :root {
     --max-columns-in-widgets-menu: 2;
-    --max-widget-size: 300px;
+    --max-widget-size: 280px;
   }
 }
 
