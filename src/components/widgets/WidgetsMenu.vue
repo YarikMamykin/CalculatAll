@@ -17,6 +17,7 @@ const widgetsMenuState = useWidgetsMenuStore();
           :key="widget"
           :widgetType="widget"
           :name="name"
+          preview="true"
         />
       </div>
     </div>

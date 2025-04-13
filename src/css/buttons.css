@@ -2,6 +2,12 @@
   transform: scale(0.9);
 }
 
+.default-btn:disabled {
+  cursor: not-allowed;
+  transform: none;
+  filter: blur(1em);
+}
+
 .circle-btn {
   border-radius: 50%;
   background-color: #153689;
