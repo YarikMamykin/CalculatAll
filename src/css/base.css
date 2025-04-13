@@ -1,5 +1,6 @@
 :root {
   --dark-gray: #303030;
+  --widget-background-color: #252525;
   --max-columns-in-widgets-menu: 1;
   --max-widget-size: 240px;
   --border-color: white;
