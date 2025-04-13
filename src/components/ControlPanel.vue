@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import DefaultCircleButton from "./buttons/DefaultCircleButton.vue";
+import { useWidgetsMenuStore } from "../store/widgets_menu";
+
+const widgetsMenuState = useWidgetsMenuStore();
 </script>
 
 <template>
@@ -8,7 +11,7 @@ import DefaultCircleButton from "./buttons/DefaultCircleButton.vue";
       <img class="default-size app-icon" src="/calculatall.png" />
       <label class="app-name">CalculatAll</label>
     </div>
-    <default-circle-button>
+    <default-circle-button @click="widgetsMenuState.show = true">
       <img class="default-inner-size" src="@/assets/add-sign.svg" />
     </default-circle-button>
   </div>

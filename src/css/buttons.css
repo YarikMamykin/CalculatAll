@@ -1,4 +1,14 @@
-.default-circle-btn {
+.default-btn:active {
+  transform: scale(0.9);
+}
+
+.default-btn:disabled {
+  cursor: not-allowed;
+  transform: none;
+  filter: brightness(60%);
+}
+
+.circle-btn {
   border-radius: 50%;
   background-color: #153689;
   border-width: 0;
@@ -7,9 +17,25 @@
     0 -0.1em 0.5em white;
 }
 
-.default-circle-btn:active {
-  transform: scale(0.9);
+.circle-btn:active {
   box-shadow:
     inset 0 0.1em 0.5em #222222,
     inset 0 -0.1em 0.5em #222222;
+}
+
+.widget-headline-button {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border: none;
+}
+
+.headline-buttons {
+  gap: 1em;
+}
+
+@media (min-width: 600px) {
+  .headline-buttons {
+    gap: 1.5em;
+  }
 }
