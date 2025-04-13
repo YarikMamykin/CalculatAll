@@ -22,7 +22,7 @@
   width: 95%;
   height: 95%;
   background-color: var(--dark-gray);
-  border: 0;
+  border: 1px solid var(--border-color);
   border-radius: 1em;
   overflow: auto;
   padding: 0 0.5em 0.5em 0.5em;
