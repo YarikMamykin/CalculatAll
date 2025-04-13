@@ -5,7 +5,7 @@
 .default-btn:disabled {
   cursor: not-allowed;
   transform: none;
-  filter: blur(1em);
+  filter: brightness(1%);
 }
 
 .circle-btn {

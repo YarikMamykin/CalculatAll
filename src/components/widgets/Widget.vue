@@ -8,10 +8,16 @@ const props = defineProps({
   widgetType: { type: String, required: true },
   preview: { type: Boolean, required: false, default: false },
 });
+
+function stopIfPreview(e: Event) {
+  if (props.preview) {
+    e.stopPropagation();
+  }
+}
 </script>
 
 <template>
-  <div class="widget">
+  <div class="widget" @click="stopIfPreview">
     <headline :title="props.name ?? 'Unnamed'" :preview="props.preview" />
     <component :is="props.widgetType" />
   </div>
