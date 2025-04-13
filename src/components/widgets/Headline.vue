@@ -7,7 +7,7 @@ const props = defineProps({
   preview: { type: Boolean, required: false, default: false },
 });
 
-const emit = defineEmits(["close,settings"]);
+const emit = defineEmits(["close", "settings"]);
 </script>
 
 <template>

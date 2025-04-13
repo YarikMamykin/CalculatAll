@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
 import Headline from "./Headline.vue";
-import { widgets } from "./widgets";
+import { type Component as AsyncComponent } from "vue";
+import { type PropType } from "vue";
 
 const props = defineProps({
   name: { type: String, required: false },
-  widgetType: { type: String, required: true },
+  widgetType: { type: Object as PropType<AsyncComponent>, required: true },
   preview: { type: Boolean, required: false, default: false },
 });
 

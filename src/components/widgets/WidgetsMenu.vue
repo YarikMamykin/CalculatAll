@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import Headline from "./Headline.vue";
 import { useWidgetsMenuStore } from "../../store/widgets_menu";
+import { ref } from "vue";
 import { widgets } from "./widgets";
 import Widget from "./Widget.vue";
 
 const widgetsMenuState = useWidgetsMenuStore();
+const preview = ref(true);
 </script>
 
 <template>
@@ -14,10 +16,10 @@ const widgetsMenuState = useWidgetsMenuStore();
       <div class="widgets-preview-container">
         <widget
           v-for="(widget, name) of widgets"
-          :key="widget"
+          :key="name"
           :widgetType="widget"
           :name="name"
-          preview="true"
+          :preview="preview"
         />
       </div>
     </div>
