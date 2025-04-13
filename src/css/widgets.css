@@ -26,6 +26,11 @@
   border-radius: 1em;
   overflow: auto;
   padding: 0 0.5em 0.5em 0.5em;
+  scrollbar-width: none;
+}
+
+#widgets-menu::-webkit-scrollbar {
+  display: none;
 }
 
 .headline {
