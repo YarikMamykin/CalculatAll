@@ -58,6 +58,10 @@ body {
     width: 1.5em;
     height: 1.5em;
   }
+
+  :root {
+    --max-columns-in-widgets-menu: 2;
+  }
 }
 
 @media (min-width: 768px) {
@@ -72,7 +76,6 @@ body {
   }
 
   :root {
-    --max-columns-in-widgets-menu: 2;
     --max-widget-size: 280px;
   }
 }
@@ -80,6 +83,6 @@ body {
 @media (min-width: 1000px) {
   :root {
     --max-columns-in-widgets-menu: 3;
-    --max-widget-size: 400px;
+    --max-widget-size: 350px;
   }
 }
