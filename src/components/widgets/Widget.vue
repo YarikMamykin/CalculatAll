@@ -8,6 +8,7 @@ const props = defineProps({
   name: { type: String, required: false, default: "Unnamed" },
   widgetType: { type: Object as PropType<AsyncComponent>, required: true },
   preview: { type: Boolean, required: false, default: false },
+  id: { type: String, required: false, default: Math.random().toString(8) },
 });
 
 const workfieldStore = useWorkfieldStore();
@@ -18,15 +19,20 @@ function selectOrInteract(e: Event) {
     workfieldStore.addWidget({
       name: props.name,
       widgetType: props.widgetType,
-      id: "someid",
+      id: props.id,
     });
+    return;
   }
+}
+
+function close() {
+  workfieldStore.removeWidget(props.id);
 }
 </script>
 
 <template>
   <div class="widget" @click="selectOrInteract">
-    <headline :title="props.name" :preview="props.preview" />
+    <headline :title="props.name" :preview="props.preview" @close="close" />
     <component :is="props.widgetType" />
   </div>
 </template>
