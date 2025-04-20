@@ -88,3 +88,15 @@ body {
     --max-widget-size: 350px;
   }
 }
+
+@media (min-width: 1400px) {
+  :root {
+    --max-widget-size: 400px;
+  }
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --max-columns-in-widgets-menu: 4;
+  }
+}
