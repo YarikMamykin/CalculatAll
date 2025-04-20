@@ -6,7 +6,7 @@ import { widgets } from "./widgets";
 import Widget from "./Widget.vue";
 
 const widgetsMenuState = useWidgetsMenuStore();
-const preview = ref(true);
+const preview = true;
 </script>
 
 <template>

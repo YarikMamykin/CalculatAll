@@ -4,28 +4,28 @@ import { type Component as AsyncComponent } from "vue";
 export interface Widget {
   name: string;
   widgetType: AsyncComponent;
+}
+
+interface WidgetToAdd extends Widget {
   id: string;
 }
 
 export interface WorkfieldState {
-  widgets: Widget[];
+  widgets: Record<string, Widget>;
 }
 
 export const useWorkfieldStore = defineStore("workfield", {
   state: (): WorkfieldState => {
     return {
-      widgets: [],
+      widgets: {},
     };
   },
   actions: {
-    addWidget(w: Widget) {
-      this.widgets.push(w);
+    addWidget({ name, widgetType, id }: WidgetToAdd) {
+      this.widgets[id] = { name, widgetType };
     },
     removeWidget(id: string) {
-      const index = this.widgets.findIndex((w) => id === w.id);
-      if (index !== -1) {
-        this.widgets.splice(index, 1);
-      }
+      delete this.widgets[id];
     },
   },
 });
