@@ -12,6 +12,7 @@
   padding-top: calc(
     (2 * var(--control-panel-max-padding)) + var(--control-panel-height) + 2em
   );
+  background-color: rgba(30, 30, 30, 0.5);
 }
 
 #widgets-menu {
