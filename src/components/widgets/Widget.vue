@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Headline from "./Headline.vue";
 import { type Component as AsyncComponent } from "vue";
-import { type PropType } from "vue";
+import { type PropType, shallowRef } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 
 const props = defineProps({
@@ -18,7 +18,7 @@ function selectOrInteract(e: Event) {
     e.stopPropagation();
     workfieldStore.addWidget({
       name: props.name,
-      widgetType: props.widgetType,
+      widgetType: shallowRef(props.widgetType),
       id: props.id,
     });
     return;
