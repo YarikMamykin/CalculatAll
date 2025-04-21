@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Headline from "./Headline.vue";
+import WidgetSettings from "./WidgetSettings.vue";
 import { type Component as AsyncComponent } from "vue";
-import { type PropType, shallowRef } from "vue";
+import { type PropType, shallowRef, ref } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { generateWidgetId } from "../widgets/widgets";
 
@@ -13,6 +14,7 @@ const props = defineProps({
 });
 
 const workfieldStore = useWorkfieldStore();
+let showSettings = ref(false);
 
 function selectOrInteract(e: Event) {
   if (props.preview) {
@@ -29,11 +31,26 @@ function selectOrInteract(e: Event) {
 function close() {
   workfieldStore.removeWidget(props.id);
 }
+
+function settings() {
+  showSettings.value = true;
+}
 </script>
 
 <template>
   <div class="widget" @click="selectOrInteract">
-    <headline :title="props.name" :preview="props.preview" @close="close" />
-    <component :is="props.widgetType" />
+    <widget-settings
+      v-if="showSettings"
+      :defaultName="props.name"
+      @cancel="showSettings = false"
+    />
+    <headline
+      :title="props.name"
+      :preview="props.preview"
+      @close="close"
+      @settings="settings"
+      v-if="!showSettings"
+    />
+    <component :is="props.widgetType" v-if="!showSettings" />
   </div>
 </template>
