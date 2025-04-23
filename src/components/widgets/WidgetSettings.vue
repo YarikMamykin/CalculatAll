@@ -17,8 +17,10 @@ const emit = defineEmits(["save", "cancel"]);
       @cancel="() => emit('cancel')"
     />
     <div class="widget-settings-items">
-      <label>Name</label>
-      <input type="text" :value="props.defaultName" />
+      <div class="widget-settings-item">
+        <label>Name</label>
+        <input type="text" :value="props.defaultName" />
+      </div>
       <slot />
     </div>
   </div>

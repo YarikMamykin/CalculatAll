@@ -74,12 +74,28 @@
 
 .widget-settings {
   position: relative;
-  background-color: darkblue;
   width: calc(100% + 1em); /* padding of widget */
   height: calc(100% + 0.5em); /* padding of widget */
   padding: 0 0.5em 0.5em 0.5em;
   left: -0.5em; /* padding of widget */
   border-radius: 1em;
+}
+
+.widget-settings-items {
+  display: grid;
+  padding-top: 0.5em;
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+.widget-settings-items > * {
+  font-size: 0.7em;
+}
+
+.widget-settings-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5em;
 }
 
 @media (min-width: 600px) {
