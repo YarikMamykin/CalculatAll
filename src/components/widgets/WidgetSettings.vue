@@ -4,6 +4,7 @@ import SettingsHeadline from "./SettingsHeadline.vue";
 
 const props = defineProps({
   defaultName: { type: String, required: true },
+  widgetId: { type: String, required: true },
 });
 
 const emit = defineEmits(["save", "cancel"]);

@@ -42,6 +42,7 @@ function settings() {
     <widget-settings
       v-if="showSettings"
       :defaultName="props.name"
+      :widgetId="props.id"
       @cancel="showSettings = false"
     />
     <headline
