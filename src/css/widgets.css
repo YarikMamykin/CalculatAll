@@ -127,9 +127,17 @@
   :root {
     --max-widget-size: 280px;
   }
+  .headline {
+    padding: 1em 2em 1em 2em;
+  }
+  .headline-title {
+    text-align: center;
+    padding-left: 0.25em;
+    font-size: 1.25em;
+  }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1100px) {
   :root {
     --max-columns-in-widgets-menu: 3;
     --max-widget-size: 350px;
