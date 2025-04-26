@@ -123,23 +123,11 @@
 }
 
 @media (min-width: 600px) {
-  .headline {
-    padding: 0.5em 1.5em 0.5em 1.5em;
-  }
-}
-
-@media (min-width: 1000px) {
-  .widget {
-    border-width: 2px;
-  }
-  .widget:hover {
-    border-width: 2px;
-  }
-}
-
-@media (min-width: 600px) {
   :root {
     --max-columns-in-widgets-menu: 2;
+  }
+  .headline {
+    padding: 0.5em 1.5em 0.5em 1.5em;
   }
 }
 
@@ -153,6 +141,12 @@
   :root {
     --max-columns-in-widgets-menu: 3;
     --max-widget-size: 350px;
+  }
+  .widget {
+    border-width: 2px;
+  }
+  .widget:hover {
+    border-width: 2px;
   }
 }
 
