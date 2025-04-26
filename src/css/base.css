@@ -1,10 +1,7 @@
 :root {
   --dark-gray: #303030;
   --widget-background-color: #252525;
-  --max-columns-in-widgets-menu: 1;
-  --max-widget-size: 240px;
   --border-color: white;
-  --active-widget-border: gold;
   --app-background: linear-gradient(to bottom, #0d1221, #1c2a4f);
 }
 
@@ -68,10 +65,6 @@ input {
     width: 1.5em;
     height: 1.5em;
   }
-
-  :root {
-    --max-columns-in-widgets-menu: 2;
-  }
 }
 
 @media (min-width: 768px) {
@@ -83,28 +76,5 @@ input {
   .default-inner-size {
     width: 2em;
     height: 2em;
-  }
-
-  :root {
-    --max-widget-size: 280px;
-  }
-}
-
-@media (min-width: 1000px) {
-  :root {
-    --max-columns-in-widgets-menu: 3;
-    --max-widget-size: 350px;
-  }
-}
-
-@media (min-width: 1400px) {
-  :root {
-    --max-widget-size: 400px;
-  }
-}
-
-@media (min-width: 1500px) {
-  :root {
-    --max-columns-in-widgets-menu: 4;
   }
 }
