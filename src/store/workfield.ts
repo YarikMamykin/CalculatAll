@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
 import { type Component as AsyncComponent } from "vue";
+import { WidgetSettings } from "./widget_settings";
 
 export interface Widget {
-  name: string;
   widgetType: AsyncComponent;
+  settings: WidgetSettings;
 }
 
 interface WidgetToAdd extends Widget {
@@ -21,8 +22,11 @@ export const useWorkfieldStore = defineStore("workfield", {
     };
   },
   actions: {
-    addWidget({ name, widgetType, id }: WidgetToAdd) {
-      this.widgets[id] = { name, widgetType };
+    addWidget({ settings, widgetType, id }: WidgetToAdd) {
+      this.widgets[id] = { settings, widgetType };
+    },
+    updateWidget(id: string, settings: WidgetSettings) {
+      this.widgets[id].settings = settings;
     },
     removeWidget(id: string) {
       delete this.widgets[id];
