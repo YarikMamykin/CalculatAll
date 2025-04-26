@@ -3,6 +3,7 @@
   --max-widget-size: 240px;
   --active-widget-border: gold;
   --modal-window-background: rgba(30, 30, 30, 0.5);
+  --widget-background-color: #252525;
 }
 
 #widgets-menu-container {
