@@ -1,39 +1,44 @@
 <script setup lang="ts">
 import Headline from "./Headline.vue";
+import WidgetSettings from "./WidgetSettings.vue";
 import { type Component as AsyncComponent } from "vue";
-import { type PropType, shallowRef } from "vue";
+import { type PropType, ref } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
-import { generateWidgetId } from "../widgets/widgets";
 
 const props = defineProps({
-  name: { type: String, required: false, default: "Unnamed" },
   widgetType: { type: Object as PropType<AsyncComponent>, required: true },
-  preview: { type: Boolean, required: false, default: false },
-  id: { type: String, required: false, default: generateWidgetId() },
+  id: { type: String, required: true },
 });
 
 const workfieldStore = useWorkfieldStore();
 
-function selectOrInteract(e: Event) {
-  if (props.preview) {
-    e.stopPropagation();
-    workfieldStore.addWidget({
-      id: generateWidgetId(),
-      name: props.name,
-      widgetType: shallowRef(props.widgetType),
-    });
-    return;
-  }
-}
+const widget = workfieldStore.widgets[props.id];
+
+let showSettings = ref(false);
 
 function close() {
   workfieldStore.removeWidget(props.id);
 }
+
+function settings() {
+  showSettings.value = true;
+}
 </script>
 
 <template>
-  <div class="widget" @click="selectOrInteract">
-    <headline :title="props.name" :preview="props.preview" @close="close" />
-    <component :is="props.widgetType" />
+  <div class="widget">
+    <widget-settings
+      v-if="showSettings"
+      :widgetId="props.id"
+      @save="showSettings = false"
+      @cancel="showSettings = false"
+    />
+    <headline
+      :title="widget.settings.name"
+      @close="close"
+      @settings="settings"
+      v-if="!showSettings"
+    />
+    <component :is="props.widgetType" v-if="!showSettings" />
   </div>
 </template>

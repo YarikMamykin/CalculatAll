@@ -13,7 +13,7 @@ const widgets = workfieldStore.widgets;
       :key="id"
       :id="id"
       :widgetType="widget.widgetType"
-      :name="widget.name"
+      :name="widget.settings.name"
       :preview="false"
     />
   </div>
