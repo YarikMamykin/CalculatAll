@@ -12,7 +12,7 @@ const emit = defineEmits(["close", "settings"]);
 <template>
   <div class="headline">
     <label class="headline-title">{{ props.title }}</label>
-    <div class="all-centered headline-buttons">
+    <div class="centered-row all-centered headline-buttons">
       <widget-headline-button @click="() => emit('settings')">
         <img class="default-inner-size" src="@/assets/gear-sign.svg" />
       </widget-headline-button>

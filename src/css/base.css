@@ -37,17 +37,14 @@ input {
   height: 100vh;
 }
 
-.all-centered {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
 .centered-row {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.all-centered {
+  justify-content: center;
 }
 
 .default-size {

@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
   <button
-    class="default-size default-btn all-centered widget-headline-button"
+    class="default-size default-btn centered-row all-centered widget-headline-button"
     :disabled="!props.active"
   >
     <slot />
