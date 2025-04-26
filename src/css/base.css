@@ -5,6 +5,7 @@
   --max-widget-size: 240px;
   --border-color: white;
   --active-widget-border: gold;
+  --app-background: linear-gradient(to bottom, #0d1221, #1c2a4f);
 }
 
 *,
@@ -20,7 +21,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #0d1221, #1c2a4f);
+  background: var(--app-background);
 }
 
 input {
