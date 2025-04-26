@@ -2,10 +2,9 @@
 import Headline from "./Headline.vue";
 import { useWidgetsMenuStore } from "../../store/widgets_menu";
 import { widgets } from "./widgets";
-import Widget from "./Widget.vue";
+import WidgetPreview from "./WidgetPreview.vue";
 
 const widgetsMenuState = useWidgetsMenuStore();
-const preview = true;
 </script>
 
 <template>
@@ -13,12 +12,11 @@ const preview = true;
     <div id="widgets-menu">
       <headline title="Widgets" @close="widgetsMenuState.show = false" />
       <div class="widgets-preview-container">
-        <widget
+        <widget-preview
           v-for="(widget, name) of widgets"
           :key="name"
           :widgetType="widget"
           :name="name"
-          :preview="preview"
         />
       </div>
     </div>
