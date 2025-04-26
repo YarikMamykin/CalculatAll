@@ -24,7 +24,7 @@ function addWidget(e: Event) {
 </script>
 
 <template>
-  <div class="widget-preview" @click="addWidget">
+  <div class="widget widget-preview" @click="addWidget">
     <label>{{ props.name }}</label>
     <component :is="props.widgetType" />
   </div>

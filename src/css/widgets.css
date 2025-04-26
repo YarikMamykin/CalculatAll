@@ -64,26 +64,18 @@
   height: var(--max-widget-size);
   border-radius: 1em;
   border: 1px solid var(--border-color);
-  padding: 0 0.5em 0.5em 0.5em;
   background-color: var(--widget-background-color);
+  padding: 0 0.5em 0.5em 0.5em;
 }
 .widget:hover {
   border: 1px solid var(--active-widget-border);
 }
 
 .widget-preview {
-  width: var(--max-widget-size);
-  height: var(--max-widget-size);
-  border-radius: 1em;
-  border: 1px solid var(--border-color);
   padding: 0.5em 0.5em 0.5em 0.5em;
-  background-color: var(--widget-background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.widget-preview:hover {
-  border: 1px solid var(--active-widget-border);
 }
 
 .widgets-preview-container {
