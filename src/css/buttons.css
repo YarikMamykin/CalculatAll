@@ -2,12 +2,6 @@
   transform: scale(0.9);
 }
 
-.default-btn:disabled {
-  cursor: not-allowed;
-  transform: none;
-  filter: brightness(60%);
-}
-
 .circle-btn {
   border-radius: 50%;
   background-color: #153689;
@@ -31,11 +25,17 @@
 }
 
 .headline-buttons {
-  gap: 1em;
+  gap: 1.25em;
 }
 
 @media (min-width: 600px) {
   .headline-buttons {
-    gap: 1.5em;
+    gap: 1.75em;
+  }
+}
+
+@media (min-width: 768px) {
+  .headline-buttons {
+    gap: 2.25em;
   }
 }

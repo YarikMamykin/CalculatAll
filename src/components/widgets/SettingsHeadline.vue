@@ -8,7 +8,7 @@ const emit = defineEmits(["save", "cancel"]);
 <template>
   <div class="headline">
     <label class="headline-title">Settings</label>
-    <div class="all-centered headline-buttons">
+    <div class="centered-row all-centered headline-buttons">
       <widget-headline-button @click="() => emit('save')">
         <img class="default-inner-size" src="@/assets/save.svg" />
       </widget-headline-button>

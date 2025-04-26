@@ -1,3 +1,11 @@
+:root {
+  --max-columns-in-widgets-menu: 1;
+  --max-widget-size: 240px;
+  --active-widget-border: gold;
+  --modal-window-background: rgba(30, 30, 30, 0.5);
+  --widget-background-color: #252525;
+}
+
 #widgets-menu-container {
   position: fixed;
   z-index: 1;
@@ -12,7 +20,7 @@
   padding-top: calc(
     (2 * var(--control-panel-max-padding)) + var(--control-panel-height) + 2em
   );
-  background-color: rgba(30, 30, 30, 0.5);
+  background-color: var(--modal-window-background);
 }
 
 #widgets-menu {
@@ -40,6 +48,7 @@
   display: grid;
   grid-template-columns: auto 1em;
   column-gap: 1em;
+  justify-items: center;
 }
 
 .headline__spacer {
@@ -49,6 +58,9 @@
 .headline-title {
   text-align: center;
   padding-left: 1.5em;
+  max-width: 90%;
+  height: 1.5em;
+  overflow: hidden;
 }
 
 .widget {
@@ -56,26 +68,18 @@
   height: var(--max-widget-size);
   border-radius: 1em;
   border: 1px solid var(--border-color);
-  padding: 0 0.5em 0.5em 0.5em;
   background-color: var(--widget-background-color);
+  padding: 0 0.5em 0.5em 0.5em;
 }
 .widget:hover {
   border: 1px solid var(--active-widget-border);
 }
 
 .widget-preview {
-  width: var(--max-widget-size);
-  height: var(--max-widget-size);
-  border-radius: 1em;
-  border: 1px solid var(--border-color);
   padding: 0.5em 0.5em 0.5em 0.5em;
-  background-color: var(--widget-background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.widget-preview:hover {
-  border: 1px solid var(--active-widget-border);
 }
 
 .widgets-preview-container {
@@ -115,16 +119,61 @@
 }
 
 @media (min-width: 600px) {
+  :root {
+    --max-columns-in-widgets-menu: 2;
+  }
   .headline {
     padding: 0.5em 1.5em 0.5em 1.5em;
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 768px) {
+  :root {
+    --max-widget-size: 280px;
+  }
+  .headline {
+    padding: 1em 2em 1em 2em;
+  }
+  .headline-title {
+    text-align: center;
+    padding-left: 0.25em;
+    font-size: 1.25em;
+  }
+  .widget-settings-item {
+    padding: 0 0.25em;
+  }
+  .widget-settings-items > * {
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 1020px) {
+  :root {
+    --max-columns-in-widgets-menu: 3;
+    --max-widget-size: 320px;
+  }
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --max-widget-size: 350px;
+  }
   .widget {
     border-width: 2px;
   }
   .widget:hover {
     border-width: 2px;
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --max-widget-size: 400px;
+  }
+}
+
+@media (min-width: 1700px) {
+  :root {
+    --max-columns-in-widgets-menu: 4;
   }
 }
