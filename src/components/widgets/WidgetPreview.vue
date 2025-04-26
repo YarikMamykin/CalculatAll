@@ -6,7 +6,7 @@ import { WidgetSettings } from "../../store/widget_settings";
 import { generateWidgetId } from "../widgets/widgets";
 
 const props = defineProps({
-  name: { type: String, required: false, default: "Unnamed" },
+  name: { type: String, required: true },
   widgetType: { type: Object as PropType<AsyncComponent>, required: true },
 });
 
