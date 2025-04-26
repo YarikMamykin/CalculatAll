@@ -26,6 +26,6 @@ function addWidget(e: Event) {
 <template>
   <div class="widget-preview" @click="addWidget">
     <label>{{ props.name }}</label>
-    <component :is="props.widgetType" v-if="!showSettings" />
+    <component :is="props.widgetType" />
   </div>
 </template>
