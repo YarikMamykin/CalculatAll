@@ -2,6 +2,7 @@
   --max-columns-in-widgets-menu: 1;
   --max-widget-size: 240px;
   --active-widget-border: gold;
+  --modal-window-background: rgba(30, 30, 30, 0.5);
 }
 
 #widgets-menu-container {
@@ -18,7 +19,7 @@
   padding-top: calc(
     (2 * var(--control-panel-max-padding)) + var(--control-panel-height) + 2em
   );
-  background-color: rgba(30, 30, 30, 0.5);
+  background-color: var(--modal-window-background);
 }
 
 #widgets-menu {
