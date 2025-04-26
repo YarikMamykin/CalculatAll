@@ -4,7 +4,7 @@
     var(--max-columns-in-widgets-menu),
     var(--max-widget-size)
   );
-  gap: 1em;
+  gap: 2em;
   padding: 2em 1em;
   justify-content: center;
   overflow: auto;

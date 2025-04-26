@@ -48,6 +48,7 @@
   display: grid;
   grid-template-columns: auto 1em;
   column-gap: 1em;
+  justify-items: center;
 }
 
 .headline__spacer {
@@ -57,6 +58,9 @@
 .headline-title {
   text-align: center;
   padding-left: 1.5em;
+  max-width: 90%;
+  height: 1.5em;
+  overflow: hidden;
 }
 
 .widget {
@@ -137,9 +141,15 @@
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1020px) {
   :root {
     --max-columns-in-widgets-menu: 3;
+    --max-widget-size: 320px;
+  }
+}
+
+@media (min-width: 1100px) {
+  :root {
     --max-widget-size: 350px;
   }
   .widget {
@@ -156,7 +166,7 @@
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1700px) {
   :root {
     --max-columns-in-widgets-menu: 4;
   }
