@@ -58,12 +58,11 @@ workflows:
             branches:
               ignore: main
       - build
-      - update_tag
-      # - update_tag:
-      # filters:
-      # branches:
-      # only:
-      # - main
+      - update_tag:
+          filters:
+            branches:
+              only:
+                - main
       # - test:
       # requires:
       # - build
