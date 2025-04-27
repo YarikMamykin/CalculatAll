@@ -21,6 +21,23 @@ jobs:
           command: npm install
       - run:
           command: npm run build
+
+  update_tag:
+    docker:
+      - image: cimg/node:23.3.0
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:n1lZyRkUdjzLf1zlSQYvzcUpa5WlJGFXr4UBfN7mnDQ"
+      - checkout
+      - run:
+          command: |
+            git config --global user.email "ymamykin@gmail.com"
+            git config --global user.name "YarikMamykin"
+            export TAG=$(git tag --sort=version:refname | tail -1);
+            export CURRENT_VERSION=$(cat package.json | grep version | sed -n 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p');
+            if [ "$TAG" = "$CURRENT_VERSION" ]; then exit 1; fi;
+
   # test:
   # docker:
   # - image: mcr.microsoft.com/playwright:focal
@@ -41,6 +58,11 @@ workflows:
             branches:
               ignore: main
       - build
+      - update_tag:
+          filters:
+            branches:
+              only:
+                - main
       # - test:
       # requires:
       # - build
