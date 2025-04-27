@@ -32,11 +32,11 @@ jobs:
       - checkout
       - run:
           command: |
-            git config --global user.email "ymamykin@gmail.com"
-            git config --global user.name "YarikMamykin"
-            export TAG=$(git tag --sort=version:refname | tail -1);
-            export CURRENT_VERSION=$(cat package.json | grep version | sed -n 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p');
-            if [ "$TAG" = "$CURRENT_VERSION" ]; then exit 1; fi;
+            git config --global user.email "ymamykin@gmail.com";
+            git config --global user.name "YarikMamykin";
+            export NEW_TAG=$(cat package.json | grep version | sed -n 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p'); 
+            git tag -a $NEW_TAG -m $NEW_TAG; 
+            git push origin --tags;
 
   # test:
   # docker:
