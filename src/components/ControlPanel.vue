@@ -8,7 +8,7 @@ const widgetsMenuState = useWidgetsMenuStore();
 <template>
   <div class="centered-row control-panel">
     <div class="centered-row">
-      <img class="default-size app-icon" src="/calculatall.png" />
+      <img class="default-size app-icon" src="/calculatall.webp" />
       <label class="app-name">CalculatAll</label>
     </div>
     <default-circle-button @click="widgetsMenuState.show = true">
