@@ -2,13 +2,20 @@ import { defineStore } from "pinia";
 import { type Component as AsyncComponent } from "vue";
 import { WidgetSettings } from "./widget_settings";
 
-export interface Widget {
+function generateWidgetId(): string {
+  const timestamp = Date.now().toString(36);
+  const random = Math.random().toString(36).slice(2, 8);
+  return `${timestamp}${random}`;
+}
+
+interface WidgetPreview {
   widgetType: AsyncComponent;
   settings: WidgetSettings;
 }
 
-interface WidgetToAdd extends Widget {
-  id: string;
+export interface Widget {
+  widgetType: AsyncComponent;
+  settings: WidgetSettings;
 }
 
 export interface WorkfieldState {
@@ -22,8 +29,8 @@ export const useWorkfieldStore = defineStore("workfield", {
     };
   },
   actions: {
-    addWidget({ settings, widgetType, id }: WidgetToAdd) {
-      this.widgets[id] = { settings, widgetType };
+    addWidget({ settings, widgetType }: WidgetPreview) {
+      this.widgets[generateWidgetId()] = { settings, widgetType };
     },
     updateWidget(id: string, settings: WidgetSettings) {
       this.widgets[id].settings = settings;
