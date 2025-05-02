@@ -2,6 +2,14 @@ import { defineStore } from "pinia";
 import { type Component as AsyncComponent } from "vue";
 import { WidgetSettings } from "./widget_settings";
 
+interface Input {
+  data: Number | String | Object | Array<Object>;
+}
+
+interface Output {
+  data: Number | String | Object | Array<Object>;
+}
+
 function generateWidgetId(): string {
   const timestamp = Date.now().toString(36);
   const random = Math.random().toString(36).slice(2, 8);
@@ -16,6 +24,8 @@ interface WidgetPreview {
 export interface Widget {
   widgetType: AsyncComponent;
   settings: WidgetSettings;
+  input?: Input;
+  output?: Output;
 }
 
 export interface WorkfieldState {
