@@ -15,3 +15,5 @@ export interface Widget {
   input?: Input;
   output?: Output;
 }
+
+export type WidgetPreview = Omit<Widget, "input" | "output">;

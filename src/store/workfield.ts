@@ -1,13 +1,7 @@
 import { defineStore } from "pinia";
-import { type Component as AsyncComponent } from "vue";
 import { WidgetSettings } from "../model/widget_settings";
-import { type Widget } from "../model/widget";
+import { type Widget, type WidgetPreview } from "../model/widget";
 import { generateId, type ID } from "../model/id";
-
-interface WidgetPreview {
-  widgetType: AsyncComponent;
-  settings: WidgetSettings;
-}
 
 export interface WorkfieldState {
   widgets: Record<ID, Widget>;
