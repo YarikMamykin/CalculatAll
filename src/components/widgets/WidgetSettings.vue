@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
-import { WidgetSettings } from "../../store/widget_settings";
+import { WidgetSettings } from "../../model/widget_settings";
 import SettingsHeadline from "./SettingsHeadline.vue";
 
 const props = defineProps({
