@@ -41,5 +41,7 @@ function settings() {
       v-if="!showSettings"
     />
     <component :is="props.widgetType" v-if="!showSettings" />
+    <div class="widget-input"></div>
+    <div class="widget-output"></div>
   </div>
 </template>
