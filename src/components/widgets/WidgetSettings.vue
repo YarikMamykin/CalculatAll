@@ -3,17 +3,19 @@ import { defineProps, defineEmits } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { WidgetSettings } from "../../model/widget_settings";
 import SettingsHeadline from "./SettingsHeadline.vue";
+import { ID } from "../../model/id";
 
 const props = defineProps({
-  widgetId: { type: String, required: true },
+  widgetId: { type: ID, required: true },
 });
 
 const emit = defineEmits(["save", "cancel"]);
 
 const workfieldStore = useWorkfieldStore();
 
-const widgetSettings: WidgetSettings =
-  workfieldStore.widgets[props.widgetId].settings;
+const widgetSettings: WidgetSettings = workfieldStore.widget(
+  props.widgetId,
+).settings;
 
 const settings: WidgetSettings = widgetSettings.clone();
 
