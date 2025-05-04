@@ -10,15 +10,12 @@ type ProgrammableInput = UserInput;
 type Output = ProgrammableInput;
 
 export abstract class Widget {
-  public readonly component: AsyncComponent;
   public settings!: WidgetSettings;
   public userInput!: UserInput;
   public programmableInput!: ProgrammableInput;
   public output!: Output;
 
-  constructor(component: AsyncComponent) {
-    this.component = component;
-
+  constructor(public readonly component: AsyncComponent) {
     this.initSettings();
     this.initInputs();
     this.initOutput();
