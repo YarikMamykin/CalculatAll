@@ -20,5 +20,5 @@ export abstract class Widget {
     this.userInput.subscribe(this.calculate);
   }
 
-  public abstract calculate(): void;
+  public abstract calculate(input: UserInput): void;
 }

@@ -13,7 +13,7 @@ export class StandardWidget extends Widget {
     this.settings = new StandardWidgetSettings();
   }
 
-  public override calculate(): void {
-    this.output.set(new Number(this.userInput.value));
+  public override calculate(input: String): void {
+    this.output.set(new Number(input));
   }
 }

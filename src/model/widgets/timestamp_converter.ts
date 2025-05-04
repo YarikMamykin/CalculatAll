@@ -15,7 +15,9 @@ export class TimestampConverterWidget extends Widget {
     this.settings = new TimestampConverterWidgetSettings();
   }
 
-  public override calculate(): void {
-    this.output.set(new Date());
+  public override calculate(input: Date | Number): void {
+    this.output.set(
+      input instanceof Number ? new Date(input as number) : input,
+    );
   }
 }
