@@ -5,6 +5,7 @@ export class Observable<T> {
 
   public set(newValue: T): void {
     this._value = newValue;
+    this.subscribers.forEach((subscriber: Function) => subscriber(newValue));
   }
 
   public get value(): T {
@@ -13,9 +14,5 @@ export class Observable<T> {
 
   public subscribe(subscriber: Function): void {
     this.subscribers.push(subscriber);
-  }
-
-  public notify(): void {
-    this.subscribers.forEach((subscriber: Function) => subscriber(this.value));
   }
 }
