@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { WidgetSettings } from "../model/widget_settings";
-import { type Widget, type WidgetPreview } from "../model/widget";
+import { type Widget } from "../model/widget";
 import { ID } from "../model/id";
 
 export interface WorkfieldState {
@@ -17,8 +17,8 @@ export const useWorkfieldStore = defineStore("workfield", {
     widget: (state) => (id: ID) => state.widgets.get(id),
   },
   actions: {
-    addWidget({ settings, widgetType }: WidgetPreview) {
-      this.widgets.set(new ID(), { settings, widgetType });
+    addWidget(widget: Widget) {
+      this.widgets.set(new ID(), widget);
     },
     updateWidget(id: ID, settings: WidgetSettings) {
       const widget = this.widgets.get(id);

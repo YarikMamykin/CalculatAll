@@ -7,7 +7,7 @@ import { useWorkfieldStore } from "../../store/workfield";
 import { ID } from "../../model/id";
 
 const props = defineProps({
-  widgetType: { type: Object as PropType<AsyncComponent>, required: true },
+  component: { type: Object as PropType<AsyncComponent>, required: true },
   id: { type: ID, required: true },
 });
 
@@ -35,12 +35,12 @@ function settings() {
       @cancel="showSettings = false"
     />
     <headline
-      :title="widget.settings.name"
+      :title="widget?.settings?.name ?? ''"
       @close="close"
       @settings="settings"
       v-if="!showSettings"
     />
-    <component :is="props.widgetType" v-if="!showSettings" />
+    <component :is="props.component" v-if="!showSettings" />
     <div class="widget-input"></div>
     <div class="widget-output"></div>
   </div>

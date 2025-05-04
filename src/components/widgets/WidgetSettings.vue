@@ -13,9 +13,13 @@ const emit = defineEmits(["save", "cancel"]);
 
 const workfieldStore = useWorkfieldStore();
 
-const widgetSettings: WidgetSettings = workfieldStore.widget(
-  props.widgetId,
-).settings;
+const widget = workfieldStore.widget(props.widgetId);
+
+if (!widget) {
+  throw new Error("Widget undefined!");
+}
+
+const widgetSettings: WidgetSettings = widget.settings;
 
 const settings: WidgetSettings = widgetSettings.clone();
 

@@ -10,11 +10,9 @@ const widgets = workfieldStore.widgets;
   <div id="workfield">
     <widget
       v-for="[id, widget] in widgets"
-      :key="id"
+      :key="id.toString()"
       :id="id"
-      :widgetType="widget.widgetType"
-      :name="widget.settings.name"
-      :preview="false"
+      :component="widget.component"
     />
   </div>
 </template>
