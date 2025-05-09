@@ -12,13 +12,23 @@ type Output = ProgrammableInput;
 
 export abstract class Widget {
   declare public settings: WidgetSettings;
-  declare public userInput: Observable<UserInput>;
-  declare public programmableInput: Observable<ProgrammableInput>;
-  declare public output: Observable<Output>;
+  declare public readonly userInput: Observable<UserInput>;
+  declare public readonly programmableInput: Observable<ProgrammableInput>;
+  declare public readonly output: Observable<Output>;
+  declare private inputPreprocessor: Function;
 
   protected constructor(public readonly component: AsyncComponent) {
-    this.userInput.subscribe(this.calculate);
+    this.inputPreprocessor = new Function("input", "return input;");
   }
 
-  public abstract calculate(input: UserInput): void;
+  public calculate(input: UserInput): void {
+    const preProcessedInput = this.inputPreprocessor.call(input);
+    this.output.set(this._calculate(preProcessedInput));
+  }
+
+  public updateInputPreprocessor(newCode: string): void {
+    this.inputPreprocessor = new Function("input", newCode);
+  }
+
+  protected abstract _calculate(input: UserInput): Output;
 }
