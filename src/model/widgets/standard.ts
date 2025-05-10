@@ -8,17 +8,14 @@ type ProgrammableInput = Number;
 type Output = Number;
 
 export class StandardWidget extends Widget {
-  public userInput: Observable<UserInput>;
-  public programmableInput: Observable<ProgrammableInput>;
-  public output: Observable<Output>;
-
   constructor(component: AsyncComponent) {
-    super(component);
-    this.userInput = new Observable<UserInput>("");
-    this.programmableInput = new Observable<ProgrammableInput>(0);
-    this.output = new Observable<Output>(0);
-    this.settings = new StandardWidgetSettings();
-    this.subscribeToInputs();
+    super(
+      component,
+      new Observable<UserInput>(""),
+      new Observable<ProgrammableInput>(0),
+      new Observable<Output>(0),
+      new StandardWidgetSettings(),
+    );
   }
 
   protected override _calculate(input: UserInput): Output {
