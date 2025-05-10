@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
-import { WidgetSettings } from "../../store/widget_settings";
+import { WidgetSettings } from "../../model/widget_settings";
 import SettingsHeadline from "./SettingsHeadline.vue";
+import { ID } from "../../model/id";
 
 const props = defineProps({
-  widgetId: { type: String, required: true },
+  widgetId: { type: ID, required: true },
 });
 
 const emit = defineEmits(["save", "cancel"]);
 
 const workfieldStore = useWorkfieldStore();
 
-const widgetSettings: WidgetSettings =
-  workfieldStore.widgets[props.widgetId].settings;
+const widget = workfieldStore.widget(props.widgetId);
 
-const settings: WidgetSettings = widgetSettings.clone();
+if (!widget) {
+  throw new Error("Widget undefined!");
+}
+
+const settings: WidgetSettings = widget.settings.clone();
 
 function save() {
   workfieldStore.updateWidget(props.widgetId, settings);

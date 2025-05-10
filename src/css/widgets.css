@@ -4,6 +4,7 @@
   --active-widget-border: gold;
   --modal-window-background: rgba(30, 30, 30, 0.5);
   --widget-background-color: #252525;
+  --io-color: #777777;
 }
 
 #widgets-menu-container {
@@ -72,9 +73,32 @@
   border: 1px solid var(--border-color);
   background-color: var(--widget-background-color);
   padding: 0 0.5em 0.5em 0.5em;
+  position: relative;
 }
 .widget:hover {
   border: 1px solid var(--active-widget-border);
+}
+
+.widget-input {
+  width: 1em;
+  height: 1em;
+  background-color: var(--io-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.widget-output {
+  width: 1em;
+  height: 1em;
+  background-color: var(--io-color);
+  border-radius: 50%;
+  position: absolute;
+  right: -0.5em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .widget-preview {
