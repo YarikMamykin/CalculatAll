@@ -8,12 +8,9 @@ type ProgrammableInput = Number | Date;
 type Output = Date;
 
 export class TimestampConverterWidget extends Widget {
-  public userInput: Observable<UserInput> = new Observable<UserInput>(
-    new Date(),
-  );
-  public programmableInput: Observable<ProgrammableInput> =
-    new Observable<ProgrammableInput>(0);
-  public output: Observable<UserInput> = new Observable<UserInput>(new Date());
+  public userInput: Observable<UserInput>;
+  public programmableInput: Observable<ProgrammableInput>;
+  public output: Observable<UserInput>;
 
   constructor(component: AsyncComponent) {
     super(component);
@@ -21,6 +18,7 @@ export class TimestampConverterWidget extends Widget {
     this.programmableInput = new Observable<ProgrammableInput>(0);
     this.output = new Observable<Output>(new Date());
     this.settings = new TimestampConverterWidgetSettings();
+    this.subscribeToInputs();
   }
 
   protected override _calculate(input: UserInput): Output {
