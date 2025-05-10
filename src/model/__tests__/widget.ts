@@ -15,23 +15,17 @@ class TestWidgetSettings extends WidgetSettings {
 }
 
 class TestWidget extends Widget {
-  public userInput: Observable<UserInput> = new Observable<UserInput>(0);
-  public programmableInput: Observable<ProgrammableInput> =
-    new Observable<ProgrammableInput>(0);
-  public output: Observable<Output> = new Observable<Output>(0);
-
   constructor() {
     super(
       defineComponent({
         name: "MockComponent",
         template: "<div>Mock Component</div>",
       }),
+      new Observable<UserInput>(0),
+      new Observable<ProgrammableInput>(0),
+      new Observable<Output>(0),
+      new TestWidgetSettings(),
     );
-    this.userInput = new Observable<UserInput>(0);
-    this.programmableInput = new Observable<ProgrammableInput>(0);
-    this.output = new Observable<Output>(0);
-    this.settings = new TestWidgetSettings();
-    this.subscribeToInputs();
   }
 
   protected override _calculate(input: UserInput): Output {

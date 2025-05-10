@@ -19,9 +19,7 @@ if (!widget) {
   throw new Error("Widget undefined!");
 }
 
-const widgetSettings: WidgetSettings = widget.settings;
-
-const settings: WidgetSettings = widgetSettings.clone();
+const settings: WidgetSettings = widget.settings.clone();
 
 function save() {
   workfieldStore.updateWidget(props.widgetId, settings);
