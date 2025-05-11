@@ -2,6 +2,7 @@
 import { defineProps, defineEmits } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { WidgetSettings } from "../../model/widget_settings";
+import CodeEditor from "../CodeEditor.vue";
 import SettingsHeadline from "./SettingsHeadline.vue";
 import { ID } from "../../model/id";
 
@@ -38,6 +39,18 @@ function save() {
       <div class="widget-settings-item">
         <label>Name</label>
         <input type="text" v-model="settings.name" />
+      </div>
+      <div class="widget-settings-item">
+        <label>User input preprocessor</label>
+        <code-editor />
+        <!-- <input type="text" :value="settings.inputPreprocessorCode.value" /> -->
+      </div>
+      <div class="widget-settings-item">
+        <label>Programmable input preprocessor</label>
+        <input
+          type="text"
+          :value="settings.programmableInputPreprocessorCode.value"
+        />
       </div>
       <slot />
     </div>

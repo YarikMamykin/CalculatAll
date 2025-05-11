@@ -1,6 +1,6 @@
 :root {
   --max-columns-in-widgets-menu: 1;
-  --max-widget-size: 240px;
+  --max-widget-size: 280px;
   --active-widget-border: gold;
   --modal-window-background: rgba(30, 30, 30, 0.5);
   --widget-background-color: #252525;
@@ -128,6 +128,7 @@
   padding-top: 0.5em;
   overflow-x: none;
   overflow-y: auto;
+  row-gap: 2em;
 }
 
 .widget-settings-items > * {
@@ -137,7 +138,8 @@
 .widget-settings-item {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0.5em;
+  row-gap: 0.5em;
+  overflow-x: none;
 }
 
 @media (min-width: 600px) {
@@ -151,7 +153,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --max-widget-size: 280px;
+    --max-widget-size: 360px;
   }
   .headline {
     padding: 1em 2em 1em 2em;
@@ -165,7 +167,7 @@
     padding: 0 0.25em;
   }
   .widget-settings-items > * {
-    font-size: 1em;
+    font-size: 0.9em;
   }
 }
 
