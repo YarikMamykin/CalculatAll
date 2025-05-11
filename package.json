@@ -10,6 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.3",
+    "@codemirror/language": "^6.11.0",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.7",
+    "@lezer/highlight": "^1.2.1",
+    "codemirror": "^6.0.1",
     "pinia": "^3.0.1",
     "vue": "^3.5.13"
   },
@@ -23,5 +29,8 @@
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vue-tsc": "^2.2.4"
+  },
+  "resolutions": {
+    "@codemirror/state": "^6.4.1"
   }
 }
