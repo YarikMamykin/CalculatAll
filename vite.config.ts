@@ -18,4 +18,32 @@ export default defineConfig({
       "@lezer/highlight",
     ],
   },
+  build: {
+    minify: "terser", // Use Terser for aggressive minification
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.logs
+        drop_debugger: true, // Remove debugger statements
+        // pure_funcs: ["console.info", "console.debug"], // Remove specific console methods
+      },
+      mangle: true, // Shorten variable names
+      format: {
+        comments: false, // Remove comments
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          codemirror: [
+            "codemirror",
+            "@codemirror/lang-javascript",
+            "@codemirror/language",
+            "@codemirror/state",
+            "@codemirror/view",
+            "@lezer/highlight",
+          ],
+        },
+      },
+    },
+  },
 });

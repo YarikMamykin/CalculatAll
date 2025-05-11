@@ -102,7 +102,6 @@ export class CodeEditor {
     if (!this.view) {
       return;
     }
-    // Get the current code from CodeMirror
     const code = this.view.state.doc.toString();
     const formattedCode = js(code);
     this.view.dispatch({
@@ -112,8 +111,5 @@ export class CodeEditor {
         insert: formattedCode,
       },
     });
-
-    // Use pretty-quick to format the code
-    // Note: pretty-quick typically works with files, so we simulate a file-like input
   }
 }
