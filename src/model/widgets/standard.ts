@@ -21,4 +21,8 @@ export class StandardWidget extends Widget {
   protected override _calculate(input: UserInput): Output {
     return new Number(input);
   }
+
+  protected override _calculateProgrammable(input: ProgrammableInput): Output {
+    return new Number(input);
+  }
 }

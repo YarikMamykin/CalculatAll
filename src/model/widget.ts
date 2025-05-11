@@ -12,10 +12,7 @@ type Output = ProgrammableInput;
 
 export abstract class Widget {
   declare protected inputPreprocessor: Function;
-
-  public updateInputPreprocessor(newCode: string): void {
-    this.inputPreprocessor = new Function("input", newCode);
-  }
+  declare protected programmableInputPreprocessor: Function;
 
   protected constructor(
     public readonly component: AsyncComponent,
@@ -32,9 +29,18 @@ export abstract class Widget {
       (v: string) => (this.inputPreprocessor = new Function("input", v)),
     );
 
+    this.programmableInputPreprocessor = new Function(
+      "input",
+      this.settings.programmableInputPreprocessorCode.value,
+    );
+    this.settings.programmableInputPreprocessorCode.subscribe(
+      (v: string) =>
+        (this.programmableInputPreprocessor = new Function("input", v)),
+    );
+
     this.userInput.subscribe((input: UserInput) => this.calculate(input));
     this.programmableInput.subscribe((input: ProgrammableInput) =>
-      this.calculate(input),
+      this.calculateProgrammable(input),
     );
   }
 
@@ -43,7 +49,13 @@ export abstract class Widget {
     this.output.set(this._calculate(preProcessedInput));
   }
 
+  protected calculateProgrammable(input: UserInput): void {
+    const preProcessedInput = this.programmableInputPreprocessor(input);
+    this.output.set(this._calculateProgrammable(preProcessedInput));
+  }
+
   protected subscribeToInputs(): void {}
 
   protected abstract _calculate(input: UserInput): Output;
+  protected abstract _calculateProgrammable(input: UserInput): Output;
 }
