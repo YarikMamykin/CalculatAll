@@ -19,18 +19,16 @@ export class CodeEditor {
     const languageCompartment = new Compartment();
     const customTheme = EditorView.theme({}, { dark: true });
     const customHighlight = HighlightStyle.define([
-      { tag: tags.keyword, color: "#fc6" },
-      { tag: tags.comment, color: "#f5d", fontStyle: "italic" },
-      //{ tag: tags.keyword, class: "cm-keyword" },
-      //{ tag: tags.string, class: "cm-string" },
-      //{ tag: tags.comment, class: "cm-comment" },
-      //{ tag: tags.number, class: "cm-number" },
-      //{ tag: tags.operator, class: "cm-operator" },
-      //{ tag: tags.typeName, class: "cm-typeName" },
-      //{ tag: tags.definition(tags.name), class: "cm-definition" },
-      //{ tag: tags.propertyName, class: "cm-propertyName" },
-      //{ tag: tags.literal, class: "cm-literal" },
-      //{ tag: tags.meta, class: "cm-meta" },
+      { tag: tags.keyword, class: "cm-keyword" },
+      { tag: tags.string, class: "cm-string" },
+      { tag: tags.comment, class: "cm-comment" },
+      { tag: tags.number, class: "cm-number" },
+      { tag: tags.operator, class: "cm-operator" },
+      { tag: tags.typeName, class: "cm-typeName" },
+      { tag: tags.definition(tags.name), class: "cm-definition" },
+      { tag: tags.propertyName, class: "cm-propertyName" },
+      { tag: tags.literal, class: "cm-literal" },
+      { tag: tags.meta, class: "cm-meta" },
     ]);
 
     const customKeymap = keymap.of([
