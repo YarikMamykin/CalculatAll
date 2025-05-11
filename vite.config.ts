@@ -1,10 +1,22 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import viteCompression from "vite-plugin-compression";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    viteCompression({
+      algorithm: "brotliCompress", // Use Brotli
+      ext: ".br", // File extension for Brotli-compressed files
+      threshold: 1024, // Compress files larger than 1KB
+      deleteOriginFile: false, // Keep original files
+      compressionOptions: {
+        level: 11, // Maximum compression level (1-11, 11 is slowest but smallest)
+      },
+    }),
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
