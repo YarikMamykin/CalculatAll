@@ -9,5 +9,11 @@ export default defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
+    dedupe: [
+      "@codemirror/state",
+      "@codemirror/view",
+      "@codemirror/lang-javascript",
+      "@codemirror/basic-setup",
+    ],
   },
 });

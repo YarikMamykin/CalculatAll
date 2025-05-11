@@ -27,5 +27,8 @@
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vue-tsc": "^2.2.4"
+  },
+  "resolutions": {
+    "@codemirror/state": "^6.4.1"
   }
 }
