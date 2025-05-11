@@ -6,6 +6,9 @@ export class WidgetSettings {
     public inputPreprocessorCode: Observable<string> = new Observable<string>(
       "return input;",
     ),
+    public programmableInputPreprocessorCode: Observable<string> = new Observable<string>(
+      "return input;",
+    ),
   ) {}
 
   public clone(): WidgetSettings {

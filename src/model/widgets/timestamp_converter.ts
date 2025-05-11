@@ -21,4 +21,8 @@ export class TimestampConverterWidget extends Widget {
   protected override _calculate(input: UserInput): Output {
     return new Date(input instanceof Number ? 0 : input.getUTCMilliseconds());
   }
+
+  protected override _calculateProgrammable(input: ProgrammableInput): Output {
+    return new Date(input instanceof Number ? 0 : input.getUTCMilliseconds());
+  }
 }

@@ -5,7 +5,7 @@ import { defineComponent } from "vue";
 import { WidgetSettings } from "../widget_settings";
 
 type UserInput = number;
-type ProgrammableInput = Number;
+type ProgrammableInput = number;
 type Output = number;
 
 class TestWidgetSettings extends WidgetSettings {
@@ -31,6 +31,10 @@ class TestWidget extends Widget {
   protected override _calculate(input: UserInput): Output {
     return input * 2;
   }
+
+  protected override _calculateProgrammable(input: ProgrammableInput): Output {
+    return input * 3;
+  }
 }
 
 describe("Widget", () => {
@@ -42,11 +46,17 @@ describe("Widget", () => {
     expect(mockOutputSubscriber).toHaveBeenCalledTimes(0);
 
     widget.userInput.set(20);
-    expect(mockOutputSubscriber).toHaveBeenCalledTimes(1);
     expect(mockOutputSubscriber).toHaveBeenCalledWith(40);
 
     widget.userInput.set(30);
-    expect(mockOutputSubscriber).toHaveBeenCalledTimes(2);
     expect(mockOutputSubscriber).toHaveBeenCalledWith(60);
+
+    widget.programmableInput.set(40);
+    expect(mockOutputSubscriber).toHaveBeenCalledWith(120);
+
+    widget.programmableInput.set(50);
+    expect(mockOutputSubscriber).toHaveBeenCalledWith(150);
+
+    expect(mockOutputSubscriber).toHaveBeenCalledTimes(4);
   });
 });
