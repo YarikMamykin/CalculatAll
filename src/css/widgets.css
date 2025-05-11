@@ -79,26 +79,22 @@
   border: 1px solid var(--active-widget-border);
 }
 
-.widget-input {
+.widget-io {
   width: 1em;
   height: 1em;
   background-color: var(--io-color);
   border-radius: 50%;
   position: absolute;
-  left: -0.5em;
   top: 50%;
   transform: translateY(-50%);
 }
 
+.widget-input {
+  left: -0.5em;
+}
+
 .widget-output {
-  width: 1em;
-  height: 1em;
-  background-color: var(--io-color);
-  border-radius: 50%;
-  position: absolute;
   right: -0.5em;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .widget-preview {
