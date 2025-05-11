@@ -1,0 +1,79 @@
+/* Base editor styles */
+.cm-editor {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #ccc;
+  min-height: 200px;
+  font-size: 14px;
+}
+
+/* Content area */
+.cm-content {
+  font-family: "Monaco", monospace;
+}
+
+/* Gutters and line numbers */
+.cm-gutters {
+  background-color: #f5f5f5;
+  color: #666666;
+  padding-right: 5px;
+  border-right: 1px solid #ddd;
+}
+
+.cm-lineNumbers .cm-gutterElement {
+  color: #0066cc;
+  font-weight: bold;
+  padding-left: 10px;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Active line */
+.cm-activeLine {
+  background-color: #000000;
+}
+
+/* Readonly lines */
+.cm-readonly {
+  background-color: #f0f0f0;
+  pointer-events: none;
+}
+
+.cm-readonly-lineNumber {
+  background-color: #e0e0e0;
+  color: #003366;
+}
+
+/* Syntax highlighting */
+.cm-keyword {
+  color: #ff0000;
+}
+
+.cm-string {
+  color: #008000;
+}
+
+.cm-comment {
+  color: #666666;
+  font-style: italic;
+}
+
+.cm-number {
+  color: #0000ff;
+}
+
+.cm-operator {
+  color: #333333;
+}
+
+/* Selection and cursor */
+.cm-selectionBackground {
+  background-color: #d6eaff;
+}
+
+.cm-cursor {
+  border-left: 1px solid #000000;
+}
+.cm-gutterElement.cm-activeLineGutter {
+  background-color: "#000000";
+}
