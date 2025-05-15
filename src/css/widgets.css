@@ -128,7 +128,13 @@
   padding-top: 0.5em;
   overflow-x: none;
   overflow-y: auto;
+  height: 85%;
   row-gap: 2em;
+  scrollbar-width: none;
+}
+
+.widget-settings-items::-webkit-scrollbar {
+  display: none;
 }
 
 .widget-settings-items > * {
