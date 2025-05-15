@@ -40,12 +40,11 @@ function save() {
         <label>Name</label>
         <input type="text" v-model="settings.name" />
       </div>
-      <div class="widget-settings-item">
+      <div class="widget-settings-item vertical">
         <label>User input preprocessor</label>
         <code-editor />
-        <!-- <input type="text" :value="settings.inputPreprocessorCode.value" /> -->
       </div>
-      <div class="widget-settings-item">
+      <div class="widget-settings-item vertical">
         <label>Programmable input preprocessor</label>
         <input
           type="text"

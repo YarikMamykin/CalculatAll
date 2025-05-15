@@ -142,6 +142,11 @@
   overflow-x: none;
 }
 
+.widget-settings-item.vertical {
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto;
+}
+
 @media (min-width: 600px) {
   :root {
     --max-columns-in-widgets-menu: 2;
