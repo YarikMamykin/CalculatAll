@@ -1,7 +1,7 @@
 /* Base editor styles */
 .cm-editor {
-  background-color: #000000;
-  color: #333333;
+  background-color: var(--widget-background-color);
+  color: white;
   border: 1px solid #ccc;
   border-radius: 10px;
   height: 10em;
