@@ -51,14 +51,14 @@ function save() {
         <label>User input preprocessor</label>
         <code-editor
           ref="inputPreprocessorCode"
-          :initialValue="widget.inputPreprocessorFunction"
+          :initialValue="settings.inputPreprocessorFunction"
         />
       </div>
       <div class="widget-settings-item">
         <label>Programmable input preprocessor</label>
         <code-editor
           ref="programmablePreprocessorCode"
-          :initialValue="widget.programmableInputPreprocessorFunction"
+          :initialValue="settings.programmableInputPreprocessorFunction"
         />
       </div>
       <slot />

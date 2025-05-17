@@ -12,7 +12,11 @@ export class WidgetSettings {
   ) {}
 
   public clone(): WidgetSettings {
-    return new WidgetSettings(this.name);
+    return new WidgetSettings(
+      this.name,
+      new Observable<string>(this.inputPreprocessorCode.value),
+      new Observable<string>(this.programmableInputPreprocessorCode.value),
+    );
   }
 }
 
