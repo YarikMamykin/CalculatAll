@@ -15,11 +15,15 @@ export abstract class Widget {
   declare protected programmableInputPreprocessor: Function;
 
   get inputPreprocessorFunction(): string {
-    return `function(input: ${this.userInput.type}) { ${this.settings.inputPreprocessorCode.value} }`;
+    return `(input: ${this.userInput.type}): ${this.userInput.type} => { 
+      ${this.settings.inputPreprocessorCode.value} 
+    }`;
   }
 
   get programmableInputPreprocessorFunction(): string {
-    return `function(input: ${this.programmableInput.type}) { ${this.settings.programmableInputPreprocessorCode.value} }`;
+    return `(input: ${this.programmableInput.type}): ${this.programmableInput.type} => { 
+      ${this.settings.programmableInputPreprocessorCode.value} 
+    }`;
   }
 
   protected constructor(
