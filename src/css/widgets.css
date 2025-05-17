@@ -80,8 +80,8 @@
 }
 
 .widget-io {
-  width: 1em;
-  height: 1em;
+  width: 0.7em;
+  height: 0.7em;
   background-color: var(--io-color);
   border-radius: 50%;
   position: absolute;
@@ -90,11 +90,11 @@
 }
 
 .widget-input {
-  left: -0.5em;
+  left: -0.35em; /* half of width */
 }
 
 .widget-output {
-  right: -0.5em;
+  right: -0.35em; /* half of width */
 }
 
 .widget-preview {
