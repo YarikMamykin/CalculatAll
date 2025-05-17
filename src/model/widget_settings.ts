@@ -2,7 +2,7 @@ import { Observable } from "./observable";
 
 export class WidgetSettings {
   protected constructor(
-    public readonly name: string,
+    public name: string,
     public inputPreprocessorCode: Observable<string> = new Observable<string>(
       "return input;",
     ),
@@ -16,6 +16,14 @@ export class WidgetSettings {
       this.name,
       new Observable<string>(this.inputPreprocessorCode.value),
       new Observable<string>(this.programmableInputPreprocessorCode.value),
+    );
+  }
+
+  public update(settings: WidgetSettings) {
+    this.name = settings.name;
+    this.inputPreprocessorCode.set(settings.inputPreprocessorCode.value);
+    this.programmableInputPreprocessorCode.set(
+      settings.programmableInputPreprocessorCode.value,
     );
   }
 }

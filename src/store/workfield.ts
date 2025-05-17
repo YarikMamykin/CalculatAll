@@ -23,7 +23,7 @@ export const useWorkfieldStore = defineStore("workfield", {
     updateWidget(id: ID, settings: WidgetSettings) {
       const widget = this.widgets.get(id);
       if (widget) {
-        widget.settings = settings;
+        widget.settings.update(settings);
       }
     },
     removeWidget(id: ID) {
