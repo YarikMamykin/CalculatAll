@@ -8,7 +8,7 @@ import { tags } from "@lezer/highlight";
 import { js } from "js-beautify";
 
 export class CodeEditor {
-  public view: EditorView | null;
+  private view: EditorView | null;
   private readonly startState: EditorState;
   private readonlyEnabled: boolean;
 
@@ -89,6 +89,18 @@ export class CodeEditor {
       },
     });
     this.readonlyEnabled = true;
+  }
+
+  public get code(): string {
+    if (!this.view || 2 === this.view.state.doc.lines) {
+      return "";
+    }
+
+    const doc = this.view.state.doc;
+
+    const start = doc.line(2).from;
+    const end = doc.line(doc.lines - 1).to;
+    return this.view.state.sliceDoc(start, end);
   }
 
   private readonlyFirstLastLines(): Extension {

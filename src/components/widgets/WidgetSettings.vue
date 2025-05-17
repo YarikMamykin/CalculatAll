@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits, Ref } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { WidgetSettings } from "../../model/widget_settings";
 import CodeEditor from "../CodeEditor.vue";
@@ -22,7 +22,14 @@ if (!widget) {
 
 const settings: WidgetSettings = widget.settings.clone();
 
+const inputPreprocessorCode: Ref = ref("");
+const programmablePreprocessorCode: Ref = ref("");
+
 function save() {
+  settings.inputPreprocessorCode.set(inputPreprocessorCode.value.getCode());
+  settings.programmableInputPreprocessorCode.set(
+    programmablePreprocessorCode.value.getCode(),
+  );
   workfieldStore.updateWidget(props.widgetId, settings);
   emit("save");
 }
@@ -42,11 +49,15 @@ function save() {
       </div>
       <div class="widget-settings-item">
         <label>User input preprocessor</label>
-        <code-editor :initialValue="widget.inputPreprocessorFunction" />
+        <code-editor
+          ref="inputPreprocessorCode"
+          :initialValue="widget.inputPreprocessorFunction"
+        />
       </div>
       <div class="widget-settings-item">
         <label>Programmable input preprocessor</label>
         <code-editor
+          ref="programmablePreprocessorCode"
           :initialValue="widget.programmableInputPreprocessorFunction"
         />
       </div>

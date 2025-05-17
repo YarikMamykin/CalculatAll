@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, defineProps } from "vue";
+import { ref, onMounted, onUnmounted, defineProps, defineExpose } from "vue";
 import { CodeEditor } from "../model/code_editor";
 
 const editorRef = ref<HTMLElement | null>(null);
@@ -21,6 +21,12 @@ onMounted(() => {
 onUnmounted(() => {
   codeEditor.unmount();
 });
+
+function getCode(): string {
+  return codeEditor.code;
+}
+
+defineExpose({ getCode });
 </script>
 
 <template>
