@@ -42,13 +42,12 @@ function save() {
       </div>
       <div class="widget-settings-item vertical">
         <label>User input preprocessor</label>
-        <code-editor />
+        <code-editor :initialValue="widget.inputPreprocessorFunction" />
       </div>
       <div class="widget-settings-item vertical">
         <label>Programmable input preprocessor</label>
-        <input
-          type="text"
-          :value="settings.programmableInputPreprocessorCode.value"
+        <code-editor
+          :initialValue="widget.programmableInputPreprocessorFunction"
         />
       </div>
       <slot />

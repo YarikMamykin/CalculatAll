@@ -14,6 +14,14 @@ export abstract class Widget {
   declare protected inputPreprocessor: Function;
   declare protected programmableInputPreprocessor: Function;
 
+  get inputPreprocessorFunction(): string {
+    return `function(input: ${this.userInput.type}) { ${this.settings.inputPreprocessorCode.value} }`;
+  }
+
+  get programmableInputPreprocessorFunction(): string {
+    return `function(input: ${this.programmableInput.type}) { ${this.settings.programmableInputPreprocessorCode.value} }`;
+  }
+
   protected constructor(
     public readonly component: AsyncComponent,
     public readonly userInput: Observable<UserInput>,

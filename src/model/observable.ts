@@ -12,6 +12,10 @@ export class Observable<T> {
     return this._value;
   }
 
+  public get type(): string {
+    return typeof this._value;
+  }
+
   public subscribe(subscriber: Function): void {
     this.subscribers.push(subscriber);
   }
