@@ -3,10 +3,12 @@
   background-color: #000000;
   color: #333333;
   border: 1px solid #ccc;
+  border-radius: 10px;
   height: 10em;
   font-size: 1em;
   overflow-y: auto;
   overflow-x: none;
+  padding: 0.5em;
 }
 
 /* Content area */
