@@ -143,14 +143,9 @@
 
 .widget-settings-item {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
   row-gap: 1em;
   overflow-x: none;
-}
-
-.widget-settings-item.vertical {
-  grid-template-rows: 1fr auto;
-  grid-template-columns: auto;
 }
 
 @media (min-width: 600px) {
