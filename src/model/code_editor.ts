@@ -1,7 +1,7 @@
 import { type Ref } from "vue";
 import { basicSetup } from "codemirror";
-import { EditorView, keymap } from "@codemirror/view";
-import { EditorState, Compartment, Prec } from "@codemirror/state";
+import { EditorView } from "@codemirror/view";
+import { EditorState, Compartment, type Extension } from "@codemirror/state";
 import { javascript } from "@codemirror/lang-javascript";
 import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 import { tags } from "@lezer/highlight";
@@ -10,11 +10,14 @@ import { js } from "js-beautify";
 export class CodeEditor {
   public view: EditorView | null;
   private readonly startState: EditorState;
+  private readonlyEnabled: boolean;
+
   constructor(
     public readonly editorRef: Ref<HTMLElement | null>,
     intialValue: string,
   ) {
     this.view = null;
+    this.readonlyEnabled = false;
 
     const themeCompartment = new Compartment();
     const languageCompartment = new Compartment();
@@ -32,46 +35,17 @@ export class CodeEditor {
       { tag: tags.meta, class: "cm-meta" },
     ]);
 
-    const customKeymap = keymap.of([
-      {
-        key: "Backspace",
-        run: (view) => {
-          console.log("Custom Backspace handler!");
-          const cursorPos = view.state.selection.main.head;
-          const line = view.state.doc.lineAt(cursorPos);
-          console.log(`On line ${line.number}: "${line.text}"`);
-          return false;
-        },
-      },
-    ]);
-
     this.startState = EditorState.create({
       doc: intialValue,
       extensions: [
         basicSetup,
+        this.readonlyFirstLastLines(),
         EditorView.lineWrapping,
         javascript({ typescript: true }),
         languageCompartment.of(javascript({ typescript: true })),
         themeCompartment.of(customTheme),
         syntaxHighlighting(customHighlight),
-        Prec.highest(customKeymap),
-        EditorView.updateListener.of((update) => {
-          if (update.docChanged) {
-            console.log(update.state.doc.toString());
-          }
-        }),
         EditorView.domEventHandlers({
-          keydown: (event, view) => {
-            console.log(event.key);
-            const cursorPos = view.state.selection.main.head;
-            const line = view.state.doc.lineAt(cursorPos);
-
-            console.log("Clicked on line:", line.number);
-            console.log("Line content:", line.text);
-            // event.preventDefault();
-            // event.stopPropagation();
-            return false;
-          },
           blur: (_, __) => {
             this.format();
           },
@@ -91,11 +65,13 @@ export class CodeEditor {
       parent: this.editorRef.value,
     });
     this.format();
+    this.readonlyEnabled = true;
   }
 
   public unmount(): void {
     this.view?.destroy();
     this.view = null;
+    this.readonlyEnabled = false;
   }
 
   public format(): void {
@@ -104,12 +80,47 @@ export class CodeEditor {
     }
     const code = this.view.state.doc.toString();
     const formattedCode = js(code);
+    this.readonlyEnabled = false;
     this.view.dispatch({
       changes: {
         from: 0,
         to: this.view.state.doc.length,
         insert: formattedCode,
       },
+    });
+    this.readonlyEnabled = true;
+  }
+
+  private readonlyFirstLastLines(): Extension {
+    return EditorState.transactionFilter.of((tr) => {
+      if (!tr.docChanged || !this.readonlyEnabled) return tr;
+
+      const doc = tr.startState.doc;
+
+      // Get the first and last line boundaries
+      const firstLineEnd = doc.line(1).to;
+      const lastLineStart = doc.line(doc.lines).from;
+
+      // Check if changes affect readonly areas
+      let cancel = false;
+      tr.changes.iterChanges((fromA, toA, _, __, ___) => {
+        // Check if change affects first line
+        if (fromA <= firstLineEnd) {
+          cancel = true;
+        }
+
+        // Check if change affects last line
+        if (toA > lastLineStart) {
+          cancel = true;
+        }
+      });
+
+      // Cancel transaction if it affects readonly areas
+      if (cancel) {
+        return [];
+      }
+
+      return tr;
     });
   }
 }
