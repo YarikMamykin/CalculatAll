@@ -3,8 +3,10 @@
   background-color: #000000;
   color: #333333;
   border: 1px solid #ccc;
-  min-height: 10em;
+  height: 10em;
   font-size: 1em;
+  overflow-y: auto;
+  overflow-x: none;
 }
 
 /* Content area */
