@@ -144,7 +144,7 @@
 .widget-settings-item {
   display: grid;
   grid-template-columns: 1fr auto;
-  row-gap: 0.5em;
+  row-gap: 1em;
   overflow-x: none;
 }
 
