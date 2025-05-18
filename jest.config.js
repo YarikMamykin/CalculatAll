@@ -5,4 +5,5 @@ export default {
   roots: ["<rootDir>/src"],
   testMatch: ["**/__tests__/**/*.ts"],
   moduleFileExtensions: ["ts", "js"],
+  modulePathIgnorePatterns: ["utils"],
 };
