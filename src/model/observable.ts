@@ -1,7 +1,11 @@
-export class Observable<T> {
-  private subscribers: Function[] = [];
+import { ID } from "./id";
 
-  constructor(private _value: T) {}
+export class Observable<T> {
+  private subscribers: Map<ID, Function>;
+
+  constructor(private _value: T) {
+    this.subscribers = new Map<ID, Function>();
+  }
 
   public set(newValue: T): void {
     this._value = newValue;
@@ -16,7 +20,13 @@ export class Observable<T> {
     return typeof this._value;
   }
 
-  public subscribe(subscriber: Function): void {
-    this.subscribers.push(subscriber);
+  public subscribe(subscriber: Function, subscriberId?: ID): ID {
+    const id = subscriberId ?? new ID();
+    this.subscribers.set(id, subscriber);
+    return id;
+  }
+
+  public unsubscribe(subscriberId: ID): void {
+    this.subscribers.delete(subscriberId);
   }
 }
