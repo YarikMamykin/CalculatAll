@@ -4,15 +4,16 @@ import WidgetSettings from "./WidgetSettings.vue";
 import { type Component as AsyncComponent } from "vue";
 import { type PropType, ref } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
+import { ID } from "../../model/id";
 
 const props = defineProps({
-  widgetType: { type: Object as PropType<AsyncComponent>, required: true },
-  id: { type: String, required: true },
+  component: { type: Object as PropType<AsyncComponent>, required: true },
+  id: { type: ID, required: true },
 });
 
 const workfieldStore = useWorkfieldStore();
 
-const widget = workfieldStore.widgets[props.id];
+const widget = workfieldStore.widget(props.id);
 
 let showSettings = ref(false);
 
@@ -34,11 +35,13 @@ function settings() {
       @cancel="showSettings = false"
     />
     <headline
-      :title="widget.settings.name"
+      :title="widget?.settings?.name ?? ''"
       @close="close"
       @settings="settings"
       v-if="!showSettings"
     />
-    <component :is="props.widgetType" v-if="!showSettings" />
+    <component :is="props.component" v-if="!showSettings" />
+    <div class="widget-io widget-input"></div>
+    <div class="widget-io widget-output"></div>
   </div>
 </template>
