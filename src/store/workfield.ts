@@ -1,33 +1,38 @@
 import { defineStore } from "pinia";
-import { WidgetSettings } from "../model/widget_settings";
+import { type WidgetSettings } from "../model/widget_settings";
 import { type Widget } from "../model/widget";
 import { ID } from "../model/id";
+import { Workfield } from "../model/workfield";
 
 export interface WorkfieldState {
-  widgets: Map<ID, Widget>;
+  workfield: Workfield;
 }
 
 export const useWorkfieldStore = defineStore("workfield", {
   state: (): WorkfieldState => {
     return {
-      widgets: new Map<ID, Widget>(),
+      workfield: new Workfield(),
     };
   },
   getters: {
-    widget: (state) => (id: ID) => state.widgets.get(id),
+    widget: (state) => (id: ID) => state.workfield.widget(id),
+    widgets: (state) => state.workfield.widgets,
   },
   actions: {
     addWidget(widget: Widget) {
-      this.widgets.set(new ID(), widget);
+      this.workfield.addWidget(widget);
     },
     updateWidget(id: ID, settings: WidgetSettings) {
-      const widget = this.widgets.get(id);
-      if (widget) {
-        widget.settings.update(settings);
-      }
+      this.workfield.updateWidget(id, settings);
     },
     removeWidget(id: ID) {
-      this.widgets.delete(id);
+      this.workfield.removeWidget(id);
+    },
+    connectWidgets(from: ID, to: ID) {
+      this.workfield.connectWidgets(from, to);
+    },
+    disconnectWidgets(which: ID, from: ID) {
+      this.workfield.disconnectWidgets(which, from);
     },
   },
 });
