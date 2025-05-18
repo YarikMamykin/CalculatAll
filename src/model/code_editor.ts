@@ -10,12 +10,13 @@ import {
 import { javascript } from "@codemirror/lang-javascript";
 import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 import { tags } from "@lezer/highlight";
-import { js } from "js-beautify";
+import { js, type JSBeautifyOptions } from "js-beautify";
 
 export class CodeEditor {
   private view: EditorView | null;
   private readonly startState: EditorState;
   private readonlyEnabled: boolean;
+  private codeFormatOptions: JSBeautifyOptions;
 
   constructor(
     public readonly editorRef: Ref<HTMLElement | null>,
@@ -23,6 +24,13 @@ export class CodeEditor {
   ) {
     this.view = null;
     this.readonlyEnabled = false;
+
+    this.codeFormatOptions = {
+      indent_size: 2,
+      space_in_empty_paren: false,
+      space_in_paren: false,
+      preserve_newlines: false,
+    };
 
     const themeCompartment = new Compartment();
     const languageCompartment = new Compartment();
@@ -108,7 +116,7 @@ export class CodeEditor {
       return;
     }
     const code = this.view.state.doc.toString();
-    const formattedCode = js(code);
+    const formattedCode = js(code, this.codeFormatOptions);
     this.readonlyEnabled = false;
     this.view.dispatch({
       changes: {
