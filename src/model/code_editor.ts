@@ -1,7 +1,12 @@
 import { type Ref } from "vue";
 import { basicSetup } from "codemirror";
-import { EditorView } from "@codemirror/view";
-import { EditorState, Compartment, type Extension } from "@codemirror/state";
+import { EditorView, keymap } from "@codemirror/view";
+import {
+  EditorState,
+  Compartment,
+  type Extension,
+  Prec,
+} from "@codemirror/state";
 import { javascript } from "@codemirror/lang-javascript";
 import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 import { tags } from "@lezer/highlight";
@@ -35,12 +40,36 @@ export class CodeEditor {
       { tag: tags.meta, class: "cm-meta" },
     ]);
 
+    const customKeymap = keymap.of([
+      {
+        key: "Enter",
+        run: (view) => {
+          const cursorPos = view.state.selection.main.head;
+          const line = view.state.doc.lineAt(cursorPos);
+          if (1 === line.number) {
+            this.readonlyEnabled = false;
+            this.view?.dispatch({
+              changes: {
+                from: line.to,
+                insert: "\n",
+              },
+              selection: { anchor: line.to + 1 },
+            });
+            this.readonlyEnabled = true;
+            return true;
+          }
+          return false;
+        },
+      },
+    ]);
+
     this.startState = EditorState.create({
       doc: intialValue,
       extensions: [
         basicSetup,
         this.readonlyFirstLastLines(),
         EditorView.lineWrapping,
+        Prec.highest(customKeymap),
         javascript({ typescript: true }),
         languageCompartment.of(javascript({ typescript: true })),
         themeCompartment.of(customTheme),
