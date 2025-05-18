@@ -16,7 +16,7 @@ export class CodeEditor {
   private view: EditorView | null;
   private readonly startState: EditorState;
   private readonlyEnabled: boolean;
-  private codeFormatOptions: JSBeautifyOptions;
+  private readonly codeFormatOptions: JSBeautifyOptions;
 
   constructor(
     public readonly editorRef: Ref<HTMLElement | null>,
