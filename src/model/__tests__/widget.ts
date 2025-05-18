@@ -1,41 +1,5 @@
-import { Widget } from "../widget";
-import { Observable } from "../observable";
 import { describe, expect, test, jest } from "@jest/globals";
-import { defineComponent } from "vue";
-import { WidgetSettings } from "../widget_settings";
-
-type UserInput = number;
-type ProgrammableInput = number;
-type Output = number;
-
-class TestWidgetSettings extends WidgetSettings {
-  constructor() {
-    super("Test");
-  }
-}
-
-class TestWidget extends Widget {
-  constructor() {
-    super(
-      defineComponent({
-        name: "MockComponent",
-        template: "<div>Mock Component</div>",
-      }),
-      new Observable<UserInput>(0),
-      new Observable<ProgrammableInput>(0),
-      new Observable<Output>(0),
-      new TestWidgetSettings(),
-    );
-  }
-
-  protected override _calculate(input: UserInput): Output {
-    return input * 2;
-  }
-
-  protected override _calculateProgrammable(input: ProgrammableInput): Output {
-    return input * 3;
-  }
-}
+import { TestWidget } from "./utils/test_widget";
 
 describe("Widget", () => {
   test("Calculate on input changed", () => {
