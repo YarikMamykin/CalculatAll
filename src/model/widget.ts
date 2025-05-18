@@ -3,7 +3,7 @@ import { WidgetSettings } from "./widget_settings";
 import { Observable } from "../model/observable";
 
 // Input, that comes from user directly, e.g. inputting numbers on standard calculator
-type UserInput = Number | String | Object | Array<Object> | Date;
+type UserInput = Number | String | Object | Array<Object> | Date | unknown;
 
 // Input, that comes from other widget through its Output
 type ProgrammableInput = UserInput;

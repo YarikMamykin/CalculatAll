@@ -1,17 +1,14 @@
 import { ID } from "./id";
 import { Widget } from "./widget";
-import { ConnectionsTable } from "./connections_table";
 import { type WidgetSettings } from "./widget_settings";
 
 type Widgets = Map<ID, Widget>;
 
 export class Workfield {
   private _widgets: Widgets;
-  private connections: ConnectionsTable;
 
   constructor() {
     this._widgets = new Map<ID, Widget>();
-    this.connections = new ConnectionsTable();
   }
 
   public get widgets(): Widgets {
@@ -38,10 +35,17 @@ export class Workfield {
   }
 
   public connectWidgets(from: ID, to: ID) {
-    this.connections.add(from, to);
+    this.widget(from)?.output.subscribe((value: unknown) =>
+      this.widgets.get(to)?.programmableInput.set(value),
+    );
   }
 
   public disconnectWidgets(which: ID, from: ID) {
-    this.connections.remove(which, from);
+    // Because there is no way to be sure that either
+    // `which` or `from` is the source of data
+    // workfield should try to unsubscribe both ways.
+    // Observable does nothing if subscriber not found.
+    this.widget(which)?.output.unsubscribe(from);
+    this.widget(from)?.output.unsubscribe(which);
   }
 }
