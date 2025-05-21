@@ -23,4 +23,18 @@ describe("Widget", () => {
 
     expect(mockOutputSubscriber).toHaveBeenCalledTimes(4);
   });
+
+  test("Calculate with input preprocessor changed", () => {
+    const widget = new TestWidget();
+
+    widget.settings.programmableInputPreprocessorCode.set("return input*10;");
+    widget.programmableInput.set(40);
+
+    expect(widget.output.value).toBe(1200);
+
+    widget.settings.inputPreprocessorCode.set("return input/10;");
+    widget.userInput.set(30);
+
+    expect(widget.output.value).toBe(6);
+  });
 });
