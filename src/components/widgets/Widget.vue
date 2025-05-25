@@ -2,20 +2,32 @@
 import Headline from "./Headline.vue";
 import WidgetSettings from "./WidgetSettings.vue";
 import { type Component as AsyncComponent } from "vue";
-import { type PropType, ref } from "vue";
+import { type PropType, ref, defineProps, defineEmits, type Ref } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { ID } from "../../model/id";
+import { Point } from "../../model/point";
 
 const props = defineProps({
   component: { type: Object as PropType<AsyncComponent>, required: true },
   id: { type: ID, required: true },
 });
 
+const emit = defineEmits(["outputPressed"]);
+
 const workfieldStore = useWorkfieldStore();
 
 const widget = workfieldStore.widget(props.id);
 
 let showSettings = ref(false);
+
+const widgetOutput: Ref<HTMLElement | undefined> = ref();
+
+function getDivCenter(element: HTMLElement): Point {
+  const rect = element.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+  return { x, y };
+}
 
 function close() {
   workfieldStore.removeWidget(props.id);
@@ -42,6 +54,10 @@ function settings() {
     />
     <component :is="props.component" v-if="!showSettings" />
     <div class="widget-io widget-input"></div>
-    <div class="widget-io widget-output"></div>
+    <div
+      ref="widgetOutput"
+      class="widget-io widget-output"
+      @click="emit('outputPressed', getDivCenter(widgetOutput as HTMLElement))"
+    ></div>
   </div>
 </template>
