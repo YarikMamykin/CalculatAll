@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <svg>
+  <svg class="connection-container">
     <polyline class="connection" :points="props.points"></polyline>
   </svg>
 </template>

@@ -12,7 +12,7 @@ const props = defineProps({
   id: { type: ID, required: true },
 });
 
-const emit = defineEmits(["outputPressed"]);
+const emit = defineEmits(["outputPressed", "inputPressed"]);
 
 const workfieldStore = useWorkfieldStore();
 
@@ -21,6 +21,7 @@ const widget = workfieldStore.widget(props.id);
 let showSettings = ref(false);
 
 const widgetOutput: Ref<HTMLElement | undefined> = ref();
+const widgetInput: Ref<HTMLElement | undefined> = ref();
 
 function getDivCenter(element: HTMLElement): Point {
   const rect = element.getBoundingClientRect();
@@ -35,6 +36,14 @@ function close() {
 
 function settings() {
   showSettings.value = true;
+}
+
+function handleInputClick(event: MouseEvent): void {
+  emit("inputPressed", getDivCenter(widgetInput.value as HTMLElement));
+}
+
+function handleOutputClick(event: MouseEvent): void {
+  emit("outputPressed", getDivCenter(widgetOutput.value as HTMLElement));
 }
 </script>
 
@@ -53,11 +62,15 @@ function settings() {
       v-if="!showSettings"
     />
     <component :is="props.component" v-if="!showSettings" />
-    <div class="widget-io widget-input"></div>
+    <div
+      ref="widgetInput"
+      class="widget-io widget-input"
+      @click.prevent="handleInputClick($event)"
+    ></div>
     <div
       ref="widgetOutput"
       class="widget-io widget-output"
-      @click="emit('outputPressed', getDivCenter(widgetOutput as HTMLElement))"
+      @click.prevent="handleOutputClick($event)"
     ></div>
   </div>
 </template>

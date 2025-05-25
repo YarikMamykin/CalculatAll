@@ -22,8 +22,7 @@ export const useWorkfieldStore = defineStore("workfield", {
   getters: {
     widget: (state) => (id: ID) => state.workfield.widget(id),
     widgets: (state) => state.workfield.widgets,
-    points: (state): string =>
-      state.temporaryConnection.map((p: Point) => p.toString()).join(" "),
+    points: (state): Point[] => state.temporaryConnection,
     drawing: (state): boolean => state.drawingConnection,
   },
   actions: {
@@ -43,13 +42,13 @@ export const useWorkfieldStore = defineStore("workfield", {
       this.workfield.disconnectWidgets(which, from);
     },
     addTemporaryConnectionPoint(p: Point) {
-      if (0 === this.temporaryConnection.length) {
-        this.temporaryConnection.push(new Point(p.x, p.y));
-        return;
-      }
+      this.temporaryConnection.push(new Point(p.x, p.y));
     },
     toggleDrawing() {
       this.drawingConnection = !this.drawingConnection;
+    },
+    resetTemporaryConnection() {
+      this.temporaryConnection = [];
     },
   },
 });
