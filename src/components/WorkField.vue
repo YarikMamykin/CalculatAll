@@ -28,7 +28,7 @@ function handleMouseMove(event: MouseEvent): void {
   );
 }
 
-function widgetInputPressed(event: MouseEvent): void {
+function widgetInputPressed(_: MouseEvent): void {
   if (!drawing.value) {
     return;
   }

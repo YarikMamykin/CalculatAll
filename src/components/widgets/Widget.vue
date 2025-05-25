@@ -38,11 +38,11 @@ function settings() {
   showSettings.value = true;
 }
 
-function handleInputClick(event: MouseEvent): void {
+function handleInputClick(_: MouseEvent): void {
   emit("inputPressed", getDivCenter(widgetInput.value as HTMLElement));
 }
 
-function handleOutputClick(event: MouseEvent): void {
+function handleOutputClick(_: MouseEvent): void {
   emit("outputPressed", getDivCenter(widgetOutput.value as HTMLElement));
 }
 </script>
