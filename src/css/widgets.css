@@ -74,6 +74,7 @@
   background-color: var(--widget-background-color);
   padding: 0 0.5em 0.5em 0.5em;
   position: relative;
+  z-index: 1;
 }
 .widget:hover {
   border: 1px solid var(--active-widget-border);
