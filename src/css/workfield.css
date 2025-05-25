@@ -10,3 +10,10 @@
   overflow: auto;
   height: calc(100vh - var(--control-panel-height) - 2em);
 }
+
+.connection {
+  stroke: white;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 10, 8;
+}
