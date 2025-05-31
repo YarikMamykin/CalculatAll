@@ -3,7 +3,9 @@ import { useWorkfieldStore } from "../store/workfield";
 import Connection from "./widgets/Connection.vue";
 import Widget from "./widgets/Widget.vue";
 import { Point } from "../model/point";
+import { type ID } from "../model/id";
 import { computed } from "vue";
+import { type Widget as WidgetModel } from "../model/widget";
 
 const workfieldStore = useWorkfieldStore();
 const widgets = workfieldStore.widgets;
@@ -48,9 +50,14 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
     return;
   }
 
-  workfieldStore.widget(outputId).output.subscribe((value: unknown) => {
-    workfieldStore.widget(id).programmableInput.set(value);
-  }, id);
+  workfieldStore.addTemporaryConnectionPoint(p);
+
+  (workfieldStore.widget(outputId) as WidgetModel).output.subscribe(
+    (value: unknown) => {
+      (workfieldStore.widget(id) as WidgetModel).programmableInput.set(value);
+    },
+    id,
+  );
 
   workfieldStore.addConnection({
     output: outputId,
@@ -74,8 +81,8 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
       @inputPressed="widgetInputPressed($event)"
     />
     <connection
-      v-for="connection in connections"
-      :key="connection"
+      v-for="(connection, idx) in connections"
+      :key="idx"
       :points="connection.points.map((p) => p.toString()).join(' ')"
     />
 
