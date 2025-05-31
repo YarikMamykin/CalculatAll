@@ -24,5 +24,8 @@
   stroke: white;
   stroke-width: 4;
   fill: none;
+}
+
+.temp-connection {
   stroke-dasharray: 10, 8;
 }

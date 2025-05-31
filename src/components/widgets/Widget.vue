@@ -39,11 +39,17 @@ function settings() {
 }
 
 function handleInputClick(_: MouseEvent): void {
-  emit("inputPressed", getDivCenter(widgetInput.value as HTMLElement));
+  emit("inputPressed", {
+    p: getDivCenter(widgetInput.value as HTMLElement),
+    id: props.id,
+  });
 }
 
 function handleOutputClick(_: MouseEvent): void {
-  emit("outputPressed", getDivCenter(widgetOutput.value as HTMLElement));
+  emit("outputPressed", {
+    p: getDivCenter(widgetOutput.value as HTMLElement),
+    id: props.id,
+  });
 }
 </script>
 

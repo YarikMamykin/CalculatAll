@@ -1,14 +1,21 @@
 import { defineStore } from "pinia";
 import { type WidgetSettings } from "../model/widget_settings";
 import { type Widget } from "../model/widget";
-import { ID } from "../model/id";
+import { type ID } from "../model/id";
 import { Workfield } from "../model/workfield";
 import { Point } from "../model/point";
+
+interface Connection {
+  output: ID;
+  input: ID;
+  points: Point[];
+}
 
 export interface WorkfieldState {
   workfield: Workfield;
   temporaryConnection: Point[];
   drawingConnection: boolean;
+  connections: Connection[];
 }
 
 export const useWorkfieldStore = defineStore("workfield", {
@@ -17,6 +24,7 @@ export const useWorkfieldStore = defineStore("workfield", {
       workfield: new Workfield(),
       temporaryConnection: [],
       drawingConnection: false,
+      connections: [],
     };
   },
   getters: {
@@ -43,6 +51,9 @@ export const useWorkfieldStore = defineStore("workfield", {
     },
     addTemporaryConnectionPoint(p: Point) {
       this.temporaryConnection.push(new Point(p.x, p.y));
+    },
+    addConnection(c: Connection) {
+      this.connections.push(c);
     },
     toggleDrawing() {
       this.drawingConnection = !this.drawingConnection;
