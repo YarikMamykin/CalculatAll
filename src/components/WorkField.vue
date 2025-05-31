@@ -48,6 +48,10 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
     return;
   }
 
+  workfieldStore.widget(outputId).output.subscribe((value: unknown) => {
+    workfieldStore.widget(id).programmableInput.set(value);
+  }, id);
+
   workfieldStore.addConnection({
     output: outputId,
     input: id,
