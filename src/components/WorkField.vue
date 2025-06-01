@@ -14,7 +14,7 @@ const drawing = computed(() => workfieldStore.drawing);
 const points = computed(() => workfieldStore.points);
 const connections = computed(() => workfieldStore.connections);
 const connectionsContainerStyle = reactive({
-  height: "1080px",
+  height: `${window.screen.height}px`,
 });
 
 let outputId: ID;
