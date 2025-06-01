@@ -31,7 +31,9 @@ export class Workfield {
   }
 
   public removeWidget(id: ID) {
-    this._widgets.delete(id);
+    this.widget(id)?.output.unsubscribe();
+    this.widgets.forEach((widget: Widget) => widget.output.unsubscribe(id));
+    this.widgets.delete(id);
   }
 
   public connectWidgets(from: ID, to: ID) {

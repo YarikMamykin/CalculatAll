@@ -42,6 +42,10 @@ export const useWorkfieldStore = defineStore("workfield", {
     },
     removeWidget(id: ID) {
       this.workfield.removeWidget(id);
+      this.connections = this.connections.filter(
+        (connection) =>
+          !connection.input.equals(id) && !connection.output.equals(id),
+      );
     },
     connectWidgets(from: ID, to: ID) {
       this.workfield.connectWidgets(from, to);

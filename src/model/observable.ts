@@ -26,7 +26,11 @@ export class Observable<T> {
     return id;
   }
 
-  public unsubscribe(subscriberId: ID): void {
-    this.subscribers.delete(subscriberId);
+  public unsubscribe(subscriberId?: ID | undefined): void {
+    if (!subscriberId) {
+      this.subscribers.clear();
+    }
+
+    this.subscribers.delete(subscriberId as ID);
   }
 }
