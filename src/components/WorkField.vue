@@ -5,7 +5,6 @@ import Widget from "./widgets/Widget.vue";
 import { Point } from "../model/point";
 import { type ID } from "../model/id";
 import { computed, type Ref, ref, reactive } from "vue";
-import { type Widget as WidgetModel } from "../model/widget";
 
 const workfieldRef: Ref<HTMLElement | null> = ref(null);
 const workfieldStore = useWorkfieldStore();
@@ -99,12 +98,7 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
     ),
   );
 
-  (workfieldStore.widget(outputId) as WidgetModel).output.subscribe(
-    (value: unknown) => {
-      (workfieldStore.widget(id) as WidgetModel).programmableInput.set(value);
-    },
-    id,
-  );
+  workfieldStore.connectWidgets(outputId, id);
 
   workfieldStore.addConnection({
     output: outputId,
