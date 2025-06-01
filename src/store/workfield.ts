@@ -51,6 +51,7 @@ export const useWorkfieldStore = defineStore("workfield", {
     },
     addTemporaryConnectionPoint(p: Point) {
       this.temporaryConnection.push(new Point(p.x, p.y));
+      console.log(p);
     },
     addConnection(c: Connection) {
       this.connections.push(c);

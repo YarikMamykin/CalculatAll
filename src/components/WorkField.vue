@@ -4,14 +4,18 @@ import Connection from "./widgets/Connection.vue";
 import Widget from "./widgets/Widget.vue";
 import { Point } from "../model/point";
 import { type ID } from "../model/id";
-import { computed } from "vue";
+import { computed, type Ref, ref, reactive } from "vue";
 import { type Widget as WidgetModel } from "../model/widget";
 
+const workfieldRef: Ref<HTMLElement | null> = ref(null);
 const workfieldStore = useWorkfieldStore();
 const widgets = workfieldStore.widgets;
 const drawing = computed(() => workfieldStore.drawing);
 const points = computed(() => workfieldStore.points);
 const connections = computed(() => workfieldStore.connections);
+const connectionsContainerStyle = reactive({
+  height: "1080px",
+});
 
 let outputId: ID;
 
@@ -24,7 +28,16 @@ function widgetOutputPressed({ p, id }: IOPressedEvent) {
   if (drawing.value) {
     return;
   }
-  workfieldStore.addTemporaryConnectionPoint(p);
+
+  const workfieldRect = workfieldRef.value?.getBoundingClientRect();
+
+  if (!workfieldRect) {
+    return;
+  }
+
+  workfieldStore.addTemporaryConnectionPoint(
+    new Point(p.x - workfieldRect.x, p.y - workfieldRect.y),
+  );
   workfieldStore.toggleDrawing();
   outputId = id;
 }
@@ -34,9 +47,32 @@ function handleMouseMove(event: MouseEvent): void {
     return;
   }
 
+  const workfieldRect = workfieldRef.value?.getBoundingClientRect();
+
+  if (!workfieldRect) {
+    return;
+  }
+
   workfieldStore.addTemporaryConnectionPoint(
-    new Point(event.clientX, event.clientY),
+    new Point(
+      event.clientX - workfieldRect.x,
+      event.clientY - workfieldRect.y + (workfieldRef.value?.scrollTop ?? 0),
+    ),
   );
+}
+
+function handleScroll(_: Event): void {
+  if (!drawing.value) {
+    return;
+  }
+
+  const workfieldRect = workfieldRef.value?.getBoundingClientRect();
+
+  if (!workfieldRect) {
+    return;
+  }
+
+  connectionsContainerStyle.height = `${connectionsContainerStyle.height.split("px")[0] + (workfieldRef.value?.scrollTop ?? 0)}px`;
 }
 
 function widgetInputPressed({ p, id }: IOPressedEvent): void {
@@ -50,7 +86,18 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
     return;
   }
 
-  workfieldStore.addTemporaryConnectionPoint(p);
+  const workfieldRect = workfieldRef.value?.getBoundingClientRect();
+
+  if (!workfieldRect) {
+    return;
+  }
+
+  workfieldStore.addTemporaryConnectionPoint(
+    new Point(
+      p.x - workfieldRect.x,
+      p.y - workfieldRect.y + (workfieldRef.value?.scrollTop ?? 0),
+    ),
+  );
 
   (workfieldStore.widget(outputId) as WidgetModel).output.subscribe(
     (value: unknown) => {
@@ -71,7 +118,12 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
 </script>
 
 <template>
-  <div id="workfield" @mousemove="handleMouseMove($event)">
+  <div
+    id="workfield"
+    ref="workfieldRef"
+    @mousemove="handleMouseMove($event)"
+    @scroll="handleScroll($event)"
+  >
     <widget
       v-for="[id, widget] in widgets"
       :key="id.toString()"
@@ -80,7 +132,7 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
       @outputPressed="widgetOutputPressed($event)"
       @inputPressed="widgetInputPressed($event)"
     />
-    <svg class="connection-container">
+    <svg class="connection-container" :style="connectionsContainerStyle">
       <connection
         v-for="(connection, idx) in connections"
         :key="idx"

@@ -4,11 +4,12 @@
     var(--max-columns-in-widgets-menu),
     var(--max-widget-size)
   );
-  gap: 2em;
+  gap: 5em;
   padding: 2em 1em;
   justify-content: center;
   overflow: auto;
   height: calc(100vh - var(--control-panel-height) - 2em);
+  position: relative;
 }
 
 .connection-container {
@@ -23,6 +24,10 @@
   stroke: white;
   stroke-width: 4;
   fill: none;
+
+  &:hover {
+    stroke: green;
+  }
 }
 
 .temp-connection {
