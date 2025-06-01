@@ -12,6 +12,8 @@
   background-color: var(--dark-gray);
   height: var(--control-panel-height);
   box-sizing: content-box;
+  position: relative;
+  z-index: 1;
 }
 
 .app-icon {

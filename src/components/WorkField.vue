@@ -80,16 +80,18 @@ function widgetInputPressed({ p, id }: IOPressedEvent): void {
       @outputPressed="widgetOutputPressed($event)"
       @inputPressed="widgetInputPressed($event)"
     />
-    <connection
-      v-for="(connection, idx) in connections"
-      :key="idx"
-      :points="connection.points.map((p) => p.toString()).join(' ')"
-    />
+    <svg class="connection-container">
+      <connection
+        v-for="(connection, idx) in connections"
+        :key="idx"
+        :points="connection.points.map((p) => p.toString()).join(' ')"
+      />
 
-    <connection
-      v-if="drawing"
-      :points="points.map((p) => p.toString()).join(' ')"
-      :temp="true"
-    />
+      <connection
+        v-if="drawing"
+        :points="points.map((p) => p.toString()).join(' ')"
+        :temp="true"
+      />
+    </svg>
   </div>
 </template>
