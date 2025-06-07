@@ -4,6 +4,7 @@ import { useWorkfieldStore } from "../../store/workfield";
 import { WidgetSettings } from "../../model/widget_settings";
 import CodeEditor from "../CodeEditor.vue";
 import SettingsHeadline from "./SettingsHeadline.vue";
+import WidgetSettingsItem from "./WidgetSettingsItem.vue";
 import { ID } from "../../model/id";
 
 const props = defineProps({
@@ -43,24 +44,21 @@ function save() {
       @cancel="() => emit('cancel')"
     />
     <div class="widget-settings-items">
-      <div class="widget-settings-item">
-        <label>Name</label>
+      <widget-settings-item name="Name">
         <input type="text" v-model="settings.name" />
-      </div>
-      <div class="widget-settings-item">
-        <label>User input preprocessor</label>
+      </widget-settings-item>
+      <widget-settings-item name="User input preprocessor">
         <code-editor
           ref="inputPreprocessorCode"
           :initialValue="widget.inputPreprocessorFunction"
         />
-      </div>
-      <div class="widget-settings-item">
-        <label>Programmable input preprocessor</label>
+      </widget-settings-item>
+      <widget-settings-item name="Programmable input preprocessor">
         <code-editor
           ref="programmablePreprocessorCode"
           :initialValue="widget.programmableInputPreprocessorFunction"
         />
-      </div>
+      </widget-settings-item>
       <slot />
     </div>
   </div>
