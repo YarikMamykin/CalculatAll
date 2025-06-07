@@ -37,8 +37,9 @@ export class Workfield {
   }
 
   public connectWidgets(from: ID, to: ID) {
-    this.widget(from)?.output.subscribe((value: unknown) =>
-      this.widgets.get(to)?.programmableInput.set(value),
+    this.widget(from)?.output.subscribe(
+      (value: unknown) => this.widgets.get(to)?.programmableInput.set(value),
+      to,
     );
   }
 
@@ -49,5 +50,32 @@ export class Workfield {
     // Observable does nothing if subscriber not found.
     this.widget(which)?.output.unsubscribe(from);
     this.widget(from)?.output.unsubscribe(which);
+  }
+
+  public widgetsConnectedToInput(wid: ID): Widgets {
+    let widgets: Widgets = new Map<ID, Widget>();
+    const w = this.widget(wid);
+    if (!w) widgets;
+
+    for (const [widgetId, widget] of this._widgets) {
+      const subs = widget.output.subscribersList();
+      subs
+        .filter((id: ID) => wid === id)
+        .forEach(() => widgets.set(widgetId, widget));
+    }
+
+    return widgets;
+  }
+
+  public widgetsConnectedToOutput(wid: ID): Widgets {
+    let widgets: Widgets = new Map<ID, Widget>();
+    const w = this.widget(wid);
+    if (!w) return widgets;
+
+    w.output
+      .subscribersList()
+      .forEach((id: ID) => widgets.set(id, this.widget(id) as Widget));
+
+    return widgets;
   }
 }

@@ -33,4 +33,8 @@ export class Observable<T> {
 
     this.subscribers.delete(subscriberId as ID);
   }
+
+  public subscribersList(): ID[] {
+    return Array.from(this.subscribers.keys());
+  }
 }

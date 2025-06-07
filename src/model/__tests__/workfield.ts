@@ -56,4 +56,44 @@ describe("Workfield", () => {
     expect(testWidget1.output.value).toBe(30);
     expect(testWidget2.output.value).toBe(90);
   });
+
+  test("Find widgets connected to input", () => {
+    const workfield = new Workfield();
+    const testWidget1 = new TestWidget();
+    const testWidget2 = new TestWidget();
+    const testWidget3 = new TestWidget();
+
+    workfield.addWidget(testWidget1);
+    workfield.addWidget(testWidget2);
+    workfield.addWidget(testWidget3);
+
+    const ids = Array.from(workfield.widgets.keys());
+    workfield.connectWidgets(ids.at(0) as ID, ids.at(1) as ID);
+    workfield.connectWidgets(ids.at(2) as ID, ids.at(1) as ID);
+
+    const widgetsConnected = Array.from(
+      workfield.widgetsConnectedToInput(ids.at(1) as ID).keys(),
+    );
+    expect(widgetsConnected).toEqual([ids.at(0) as ID, ids.at(2) as ID]);
+  });
+
+  test("Find widgets connected to output", () => {
+    const workfield = new Workfield();
+    const testWidget1 = new TestWidget();
+    const testWidget2 = new TestWidget();
+    const testWidget3 = new TestWidget();
+
+    workfield.addWidget(testWidget1);
+    workfield.addWidget(testWidget2);
+    workfield.addWidget(testWidget3);
+
+    const ids = Array.from(workfield.widgets.keys());
+    workfield.connectWidgets(ids.at(1) as ID, ids.at(0) as ID);
+    workfield.connectWidgets(ids.at(1) as ID, ids.at(2) as ID);
+
+    const widgetsConnected = Array.from(
+      workfield.widgetsConnectedToOutput(ids.at(1) as ID).keys(),
+    );
+    expect(widgetsConnected).toEqual([ids.at(0) as ID, ids.at(2) as ID]);
+  });
 });
