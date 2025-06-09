@@ -32,6 +32,14 @@ export const useWorkfieldStore = defineStore("workfield", {
     widgets: (state) => state.workfield.widgets,
     points: (state): Point[] => state.temporaryConnection,
     drawing: (state): boolean => state.drawingConnection,
+    widgetsConnectedToInput:
+      (state) =>
+      (id: ID): Map<ID, Widget> =>
+        state.workfield.widgetsConnectedToInput(id),
+    widgetsConnectedToOutput:
+      (state) =>
+      (id: ID): Map<ID, Widget> =>
+        state.workfield.widgetsConnectedToOutput(id),
   },
   actions: {
     addWidget(widget: Widget) {

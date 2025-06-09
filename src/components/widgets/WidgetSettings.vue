@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, type Ref } from "vue";
+import { ref, defineProps, defineEmits, type Ref, computed } from "vue";
 import { useWorkfieldStore } from "../../store/workfield";
 import { WidgetSettings } from "../../model/widget_settings";
 import CodeEditor from "../CodeEditor.vue";
@@ -25,6 +25,13 @@ const settings: WidgetSettings = widget.settings.clone();
 
 const inputPreprocessorCode: Ref = ref("");
 const programmablePreprocessorCode: Ref = ref("");
+
+const widgetsConnectedToInput = computed(() =>
+  workfieldStore.widgetsConnectedToInput(props.widgetId),
+);
+const widgetsConnectedToOutput = computed(() =>
+  workfieldStore.widgetsConnectedToOutput(props.widgetId),
+);
 
 function save() {
   settings.inputPreprocessorCode.set(inputPreprocessorCode.value.getCode());
@@ -58,6 +65,20 @@ function save() {
           ref="programmablePreprocessorCode"
           :initialValue="widget.programmableInputPreprocessorFunction"
         />
+      </widget-settings-item>
+      <widget-settings-item name="Input connections">
+        <ul>
+          <li v-for="[id, w] of widgetsConnectedToInput" :key="id.toString()">
+            {{ id.toString() + " " + w.settings.name }}
+          </li>
+        </ul>
+      </widget-settings-item>
+      <widget-settings-item name="Output connections">
+        <ul>
+          <li v-for="[id, w] of widgetsConnectedToOutput" :key="id.toString()">
+            {{ id.toString() + " " + w.settings.name }}
+          </li>
+        </ul>
       </widget-settings-item>
       <slot />
     </div>
