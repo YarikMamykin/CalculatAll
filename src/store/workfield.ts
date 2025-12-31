@@ -1,33 +1,42 @@
 import { defineStore } from "pinia";
-import { WidgetSettings } from "../model/widget_settings";
-import { type Widget } from "../model/widget";
-import { ID } from "../model/id";
+import { type Component as AsyncComponent } from "vue";
+import { WidgetSettings } from "./widget_settings";
+
+function generateWidgetId(): string {
+  const timestamp = Date.now().toString(36);
+  const random = Math.random().toString(36).slice(2, 8);
+  return `${timestamp}${random}`;
+}
+
+interface WidgetPreview {
+  widgetType: AsyncComponent;
+  settings: WidgetSettings;
+}
+
+export interface Widget {
+  widgetType: AsyncComponent;
+  settings: WidgetSettings;
+}
 
 export interface WorkfieldState {
-  widgets: Map<ID, Widget>;
+  widgets: Record<string, Widget>;
 }
 
 export const useWorkfieldStore = defineStore("workfield", {
   state: (): WorkfieldState => {
     return {
-      widgets: new Map<ID, Widget>(),
+      widgets: {},
     };
   },
-  getters: {
-    widget: (state) => (id: ID) => state.widgets.get(id),
-  },
   actions: {
-    addWidget(widget: Widget) {
-      this.widgets.set(new ID(), widget);
+    addWidget({ settings, widgetType }: WidgetPreview) {
+      this.widgets[generateWidgetId()] = { settings, widgetType };
     },
-    updateWidget(id: ID, settings: WidgetSettings) {
-      const widget = this.widgets.get(id);
-      if (widget) {
-        widget.settings.update(settings);
-      }
+    updateWidget(id: string, settings: WidgetSettings) {
+      this.widgets[id].settings = settings;
     },
-    removeWidget(id: ID) {
-      this.widgets.delete(id);
+    removeWidget(id: string) {
+      delete this.widgets[id];
     },
   },
 });

@@ -15,8 +15,7 @@ const widgetsMenuState = useWidgetsMenuStore();
         <widget-preview
           v-for="(widget, name) of widgets"
           :key="name"
-          :component="widget.component"
-          :widgetType="widget.widgetType"
+          :widgetType="widget"
           :name="name"
         />
       </div>

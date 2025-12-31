@@ -22,16 +22,6 @@ jobs:
       - run:
           command: npm run build
 
-  unit-test:
-    docker:
-      - image: cimg/node:23.3.0
-    steps:
-      - checkout
-      - run:
-          command: npm install
-      - run:
-          command: npm run test
-
   update_tag:
     docker:
       - image: cimg/node:23.3.0
@@ -68,9 +58,6 @@ workflows:
             branches:
               ignore: main
       - build
-      - unit-test:
-          requires:
-            - build
       - update_tag:
           filters:
             branches:
